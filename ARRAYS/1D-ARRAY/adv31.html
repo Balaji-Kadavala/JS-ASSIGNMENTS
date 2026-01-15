@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var arr=[1,2,6,5,1,2,6,1,2,7,7]
+    var i,j,temp,cnt,pcnt,ele,pos=0,len=arr.length;
+    document.write(`Before sorting:${arr}<br>`)
+    while(pos<len)
+    {
+      pcnt=len
+      for(i=pos;i<len;i++)
+      {
+        cnt=0
+        for(j=pos;j<len;j++)
+          if(arr[i]==arr[j])
+            cnt++
+        if(cnt<pcnt)
+        {            
+          pcnt=cnt
+          ele=arr[i]
+        }
+      }          
+      cnt=0
+      for(j=pos;j<len;j++)
+      {        
+        if(arr[j]==ele)
+        {
+          temp=arr[pos]
+          arr[pos]=arr[j]
+          arr[j]=temp
+          pos++
+          cnt++
+          if(cnt==pcnt)
+            break
+        }
+      }
+    }
+    document.write("Sorted based on ele's occurances:",arr)  
+  </script>
+</body>
+</html>

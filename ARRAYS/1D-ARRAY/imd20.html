@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Programs</title>
+</head>
+<body>
+<script>
+  var arr=[23,34,54,10,34,7,23]
+  var brr=[];
+  for(var i=0;i<arr.length;i++)
+      if(!brr.includes(arr[i]))
+        brr.push(arr[i])
+  arr=brr.slice()
+  document.write(arr)
+</script>
+</body>
+</html>

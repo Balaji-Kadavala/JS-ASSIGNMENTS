@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Programs</title>
+</head>
+<body>
+<script>
+  var arr=[10,20,30,40,50]
+  var brr=[5,15,25,35,45,55,65]
+  var mrr=arr.slice()
+  for(var i=0;i<brr.length;i++)
+      for(var j=i;j<mrr.length;j++)
+         if(brr[i]>=mrr[j] && brr[i]<mrr[j+1])  //This is for middle elements not last not earlier
+         {
+           mrr.splice(j+1,0,brr[i])
+           break
+         }
+         else if(brr[i]>mrr[mrr.length-1])   //If the brr is greater than arr then the last elements will be pushed
+         {
+           mrr.splice(mrr.length+1,0,brr[i])               //mrr.push(brr[i])
+           break
+         }
+         else if(i==0 && brr[i]<mrr[j])  //If the 1st ele of brr is < arr 1st ele then this gets executed because the 1st if will check for greater ele not smaller
+         {
+            mrr.unshift(brr[i])
+            break
+         }
+  document.write(`${arr}<br>${brr}<br>${mrr}`)
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Programs</title>
+</head>
+<body>
+<script>
+  var arr=[10,20,30,40,50]
+  var n=+prompt("Enter a number:")
+  var pos=+prompt(`Enter the position (Len=${arr.length}):`)
+  if(pos<=arr.length+1  && pos>0)
+  {
+   arr.splice(pos-1,0,n)   
+  document.write(`Array after inserting ${n} at position ${pos}:${arr}`)       
+  }
+  else
+  {
+     alert("Please enter valid position")
+    document.write("Invalid!")
+  }
+</script>
+</body>
+</html>

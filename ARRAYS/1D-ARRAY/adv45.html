@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var i,s="Malayalam".toLowerCase()
+    for(i=0;i<parseInt(s.length/2);i++)
+      if(s[i]!=s.at(-i-1))
+          break
+    if(i>=parseInt(s.length/2))
+      document.write("It's a Palindrome")
+    else
+      document.write("Not a Palindrome!")      
+  </script>
+</body>
+</html>

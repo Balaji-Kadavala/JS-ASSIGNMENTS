@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Programs</title>
+</head>
+<body>
+<script>
+  var arr=[10,20,30,40,50]
+  var pos=+prompt(`Enter the position (Array=${arr}):`)
+  if(pos<=arr.length  && pos>0)
+  {
+   arr.splice(pos-1,1)   
+  document.write(`Array after removing element at position ${pos}:${arr}`)       
+  }
+  else
+  {
+     alert("Please enter valid position")
+    document.write("Invalid!")
+  }
+</script>
+</body>
+</html>

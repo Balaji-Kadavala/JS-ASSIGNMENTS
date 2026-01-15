@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var sals=[15000,100000,60000,30000,62000,48000,50000]
+    document.write(sals,"<br>")
+    for(var i=0;i<sals.length-1;i++)
+    {  
+      if(sals[i]<=50000)
+      {
+        sals[i]=sals[i]-(10*sals[i])/100
+        continue
+      }
+      sals[i]=sals[i]-(12*sals[i])/100
+    }
+    document.write(sals)
+  </script>
+</body>
+</html>

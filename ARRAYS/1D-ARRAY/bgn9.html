@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Programs</title>
+</head>
+<body>
+<script>
+  var arr=[50,40,30,20,10]
+  document.write(arr,"<br>")
+  for(var i=0;i<arr.length;i++)
+    for(var j=i+1;j<arr.length;j++)
+      if(arr[i]>arr[j])
+      {
+         arr[i]=arr[i]+arr[j]
+         arr[j]=arr[i]-arr[j]
+         arr[i]=arr[i]-arr[j]
+      }
+  document.write(arr)
+</script>
+</body>
+</html>

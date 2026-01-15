@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var arr=[50,10,60,30,40,70,50]
+    for(var i=0;i<arr.length-1;i++)
+      if(arr[i+1]<arr[i])
+      {
+        arr.splice(i+1,1)
+        i-=1
+      }
+    document.write(arr)
+  </script>
+</body>
+</html>

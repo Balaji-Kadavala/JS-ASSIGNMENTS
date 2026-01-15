@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var i,j,cnt,arr=[75,65,65,80,75,18,34,65,40,34,30]
+    document.write(`Unique elements in ${arr}:`)
+    for(i=0;i<arr.length;i++)
+    {
+        cnt=0
+        for(j=0;j<arr.length;j++)
+          if(arr[i]==arr[j])          
+            cnt++          
+        if(cnt==1)          
+          document.write(`<b>${arr[i]}</b> `)          
+    }          
+  </script>
+</body>
+</html>

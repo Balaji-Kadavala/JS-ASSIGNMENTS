@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var i,j,cnt,dcnt=0,arr=[75,65,65,80,75,18,34,65,40,34,30],evens=[],odds=[] 
+    for(i=0;i<arr.length;i++)
+    {      
+        if(!(arr[i]%2))          
+          evens.push(arr[i])          
+        else
+          odds.push(arr[i])      
+    }
+    document.write(`Array:${arr}<br>Evens:${evens}<br>Odds:${odds}`)                   
+  </script>
+</body>
+</html>      

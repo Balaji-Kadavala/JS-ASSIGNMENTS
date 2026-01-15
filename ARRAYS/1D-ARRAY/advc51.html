@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Programs</title>
+</head>
+<body>
+<script>
+  var max,smax,arr=[10,111,14,21,54]
+  max=smax=arr[0]
+  for(var i=0;i<arr.length;i++)
+      if(arr[i]>max)
+      {
+        smax=max;
+        max=arr[i]
+      }
+      else
+        if(arr[i]>smax)
+          smax=arr[i]
+  document.write(`Second max ele in ${arr}:${smax}`)
+</script>
+</body>
+</html>

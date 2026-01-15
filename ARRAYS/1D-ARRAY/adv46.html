@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var ast,s=["Cheeta","Lion","Tiger","Deep"]
+    for(var i=0;i<s.length;i++)  
+    {      
+      ast=''
+      for(var j=0;j<s[i].length;j++)
+          ast=ast.concat('*')
+      s[i]=ast  
+    }
+    document.write(s)      
+  </script>
+</body>
+</html>

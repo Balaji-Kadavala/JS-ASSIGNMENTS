@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var i,arr=[75,65,65,80,75,18,34,65,40,34,30]
+    document.write(`Array:${arr}<br>`)  
+    for(i=1;i<arr.length;i++)
+      if(!(arr[i]%2))
+      {
+        ele=arr.splice(i,1)
+        arr.unshift(ele)
+      }
+    document.write(`After seperating evens & odds:${arr}`)                   
+  </script>
+</body>
+</html>      

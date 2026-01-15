@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Programs</title>
+</head>
+<body>
+<script>
+  var sals=prompt("Enter an array of salaries sep by ',' :").split(',').map(Number);
+  var HRA,DA,tax,fsal,fsals=[];
+  document.write(sals,"<br>")
+  for(var i=0;i<sals.length;i++)
+  {
+      HRA=(sals[i]*40)/100
+      DA=(sals[i]*92)/100
+      tax=(sals[i]*10)/100
+      fsal=sals[i]+HRA+DA-tax
+      fsals.push(fsal)
+  }
+  document.write(fsals)
+</script>
+</body>
+</html>
