@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  var mat1=[[1,2,3],[4,5,6],[7,8,9]]
+  var mat2=[[9,8,7],[6,5,4],[3,2,1]]
+  var rmat=[]  
+  document.write("Addition of the matrices:<br>")
+  for(var i=0;i<mat1.length;i++) 
+  {    
+    var matr=[]
+    for(var j=0;j<mat1[i].length;j++)      
+      matr.push(mat1[i][j]+mat2[i][j])  
+    rmat.push(matr)
+  }      
+  for(var i=0;i<rmat.length;i++)
+  {
+    for(var j=0;j<rmat[i].length;j++)
+    {  
+      document.write(rmat[i][j]," ")
+    }
+    document.write("<br>")  
+  }
+</script>
+</body>
+</html>

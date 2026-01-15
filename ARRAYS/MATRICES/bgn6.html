@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  var mat=[[1,0,0],[0,5,0],[0,0,9]]
+  if(mat.length==mat[0].length)    
+    for(var i=0;i<mat.length;i++)    
+      for(var j=0;j<mat[i].length;j++)      
+        if(j==i && mat[i][j]==0)
+          break
+        else if(i!=j && mat[i][j]!=0)
+          break                   
+  if(i==mat.length && j==mat.length)
+    document.write("It's a diagonal matrix!")
+  else
+    document.write("Not a diagonal matrix!")
+</script>
+</body>
+</html>

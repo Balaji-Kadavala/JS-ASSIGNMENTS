@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  var mms=-1,mm=0
+  var smarks = [
+  [78, 65, 80],
+  [45, 25, 50],
+  [90, 88, 92],
+  [30, 40, 25],
+  [60, 55, 70]
+  ];
+  for(var i=0;i<smarks.length;i++)
+  {
+    let tm=smarks[i].reduce((m1,m2) => m1+m2)
+    if(tm>mm)
+    {
+      mms=i+1
+      mm=tm
+    }
+  }
+  document.write(`Student ${mms} has more marks!`)
+</script>
+</body>
+</html>

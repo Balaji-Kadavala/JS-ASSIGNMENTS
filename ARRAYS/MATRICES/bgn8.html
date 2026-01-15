@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  var mat1=[[1,2,3],[4,5,6],[7,8,9]]
+  var mat2=[[9,8],[6,5],[3,2]]
+  var rmat=[]    
+  if(mat1[0].length==mat2.length)
+  {
+    document.write("Multiplication of the matrices:<br>")
+    for(var i=0;i<mat1.length;i++) 
+    {    
+      let matr=[]      
+      for(var j=0;j<mat2[i].length;j++) 
+      {        
+        let res=0
+        for(let k=0;k<mat2.length;k++)
+          res+=mat1[i][k]*mat2[k][j]
+        matr.push(res)  
+      }
+      rmat.push(matr)
+    }      
+    console.log(rmat.length," ",rmat[0].length)
+    for(var i=0;i<mat1.length;i++)
+    {
+     for(var j=0;j<mat2[i].length;j++)
+      {  
+        document.write(rmat[i][j]," &nbsp&nbsp")
+      }
+      document.write("<br>")  
+    }
+  }
+  else
+    document.write("Matrices are invalid!")
+</script>
+</body>
+</html>

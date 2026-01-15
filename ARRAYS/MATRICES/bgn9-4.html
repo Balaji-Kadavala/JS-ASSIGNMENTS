@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  var smarks = [
+  [78, 65, 80],
+  [45, 25, 50],
+  [90, 88, 92],
+  [30, 40, 25],
+  [60, 55, 70]
+  ];
+  for(var i=0;i<3;i++)
+  {
+    let avg=smarks.reduce((tm,s) => tm+s[i],0)/5
+    document.write(`Average marks of subject ${i+1}: ${parseInt(avg)}<br>`)
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  var mat=[[1,2,3],[4,5,6],[7,8,9]]
+  document.write("Diagonal elements of the matrix:<br>")
+  for(var i=0;i<mat.length;i++)
+  {
+    for(var j=0;j<mat[i].length;j++)
+    {  
+      if(j==i)
+        document.write(mat[i][j],"&nbsp")
+      else
+        document.write("&nbsp&nbsp")
+    }
+    document.write("<br>")  
+  }
+</script>
+</body>
+</html>

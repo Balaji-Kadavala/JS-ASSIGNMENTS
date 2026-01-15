@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  var sc=0
+  var smarks = [
+  [78, 65, 80],
+  [45, 25, 50],
+  [90, 88, 92],
+  [30, 40, 25],
+  [60, 55, 70]
+  ];
+  for(var i=0;i<smarks.length;i++)
+  {
+    let sfs=smarks[i].filter((m) => m<35?true:false)   
+    if(!sfs.length)      
+      sc++
+  }
+  document.write(`${sc} students have passed in all subjects!`)
+</script>
+</body>
+</html>
