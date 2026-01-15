@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>  
+  body {
+    display: flex;
+    justify-content: center;
+  }
+  input{
+    text-align:center   
+  }
+  #hh{
+    width:25px
+  }
+  #mm{
+    width:25px
+  }
+  #ss{
+    width:25px
+  }
+    
+  </style>
+</head>
+<body>
+  <div align="center" style="border:2px solid; width:180px">    
+  <h1>
+    TIMER ⏱
+  </h1>
+  <b>HH</b>
+  <b>MM</b>
+  <b>SS</b><br>
+  <input type="text" value="0" id="hh" placeholder="HH">
+  <input type="text" value="5" id="mm" placeholder="MM"> 
+  <input type="text" value="0" id="ss" placeholder="SS">     
+  <h2 id="timecnt">HH : MM : SS</h2>    
+  <audio id="sound" src="iphone_message_tone.mp3" preload="auto"></audio>
+  <button onclick="toggle()" id="tglBtn" style="margin-bottom:10px">Start</button>
+  <button onclick="reset()" id="rst" style="margin-left:5px">Reset</button>
+  </div>
+  <script>
+  var HH,MM,SS  
+  var timer;  
+  var tgbtn=document.getElementById("tglBtn")
+  var tmcnt=document.getElementById("timecnt")
+  function timeCount()
+  {
+    timer=setInterval(function(){        
+      if(SS==0)
+      {
+        if(HH==0 && MM==0 && SS==0)
+        {
+          document.getElementById("sound").play() 
+          alert("Timer completed!!!")           
+          reset()
+          return
+        }        
+       MM--
+       SS=59        
+      }     
+      else
+        SS--
+      if(MM==0 && HH!=0)
+      {
+         HH--
+         MM=59
+      }                 
+      render()
+    },1000)
+  }
+  
+  function render()
+  {
+    tmcnt.innerText=(HH<10?"0"+HH:HH)+" : "+(MM<10?"0"+MM:MM)+" : "+(SS<10?"0"+SS:SS)
+  }  
+  
+  function toggle(){
+    if(tgbtn.innerText=="Start")
+    {
+      HH=document.getElementById("hh").value
+      MM=document.getElementById("mm").value
+      SS=document.getElementById("ss").value 
+      document.getElementById("hh").disabled=true
+      document.getElementById("mm").disabled=true
+      document.getElementById("ss").disabled=true
+    }      
+    if(tgbtn.innerText=="Start" || tgbtn.innerText=="Resume")
+    {      
+      tgbtn.innerText="Pause"
+      timeCount()
+    }    
+    else
+    {
+      clearInterval(timer)
+      tgbtn.innerText="Resume"
+    }
+  }
+  
+  function reset()
+  {    
+    document.getElementById("hh").disabled=false
+    document.getElementById("mm").disabled=false
+    document.getElementById("ss").disabled=false
+    tgbtn.innerText="Start"
+    clearInterval(timer)
+    HH=document.getElementById("hh").value=document.getElementById("ss").value=SS=0
+    MM=document.getElementById("mm").value=5    
+    render()
+  }
+  
+  </script>
+</body>
+</html>

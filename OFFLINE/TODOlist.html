@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>  
+</head>
+<body>
+  <div id="div1" style="border:2px solid">
+    <h2>Balaji</h2>
+    <div id="div2" style="border:2px solid; margin:5px">
+      <h3>Todolist</h3>
+      <input type="text" id="inp" onkeyup="checkEnter(event)" onchange="checkEnter(event)">
+      <button id="addBtn" onclick="addTodo()">Add Todo</button>
+      <ul id="ulst">
+        
+      </ul>
+    </div>    
+  </div>
+<script>
+  var tdli=["Task1","Task2","Task3","Task4"]
+  genUI()
+  document.getElementById("addBtn").disabled=true
+  function addTodo()
+  {
+    var ip=document.getElementById("inp").value    
+    tdli.push(ip)
+    genUI()          
+    document.getElementById("inp").value=""
+    document.getElementById("addBtn").disabled=true
+  }
+  function genUI()
+  {
+      var ul=document.getElementById("ulst")
+      ul.innerText=""    
+      tdli.forEach(function(tdi,i){
+      var nli=document.createElement("li")
+      nli.innerText=tdi
+      var btn=document.createElement("button")
+      btn.innerText="Delete"
+      btn.addEventListener("click",function(){
+        deltd(i);
+      })
+      nli.appendChild(btn)        
+      ul.appendChild(nli)
+    })
+  }
+  function deltd(td)
+  {
+    tdli.splice(td,1)
+    genUI()
+  }
+  function checkEnter(e)
+  {
+    if(e.target.value=="")
+      document.getElementById("addBtn").disabled=true
+    else
+      document.getElementById("addBtn").disabled=false
+    if(e.key=="Enter")
+      addTodo()
+  }
+</script>
+</body>
+</html>

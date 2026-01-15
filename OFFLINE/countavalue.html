@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <h1>Count:<span id="cnt">0</span></h1>
+  <button onclick="incVal()">Increment</button>
+  <button onclick="decVal()">Decrement</button>
+  <script>
+    var cnt=0  
+    function incVal()
+    {
+      cnt++
+      genUI()
+    }
+   function decVal()
+   {
+      cnt--
+      genUI()
+   }
+   function genUI()
+   {  
+     
+      document.getElementById("cnt").innerText=cnt
+   }
+  </script>
+</body>
+</html>

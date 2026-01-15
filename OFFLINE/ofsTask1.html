@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <table border="2" width="400px">
+    <thead>
+      <th onclick="sortEmployees('firstname')">Firstname</th>
+      <th onclick="sortEmployees('lastname')">Lastname</th>
+      <th onclick="sortEmployees('age')">Age</th>
+      <th onclick="sortEmployees('gender')">Gender</th>
+      <th onclick="sortEmployees('city')">City</th>
+      <th onclick="sortEmployees('salary')">Salary</th>
+    </thead>
+    <tbody id="tb">
+      
+    </tbody>
+  </table>
+<script>
+  const employees = [
+            {
+                firstname: "John",
+                lastname: "Doe",
+                age: 30,
+                gender: "Male",
+                city: "New York",
+                salary: 60000
+            },
+            {
+                firstname: "Jane",
+                lastname: "Smith",
+                age: 25,
+                gender: "Female",
+                city: "Los Angeles",
+                salary: 75000
+            },
+            {
+                firstname: "Peter",
+                lastname: "Jones",
+                age: 35,
+                gender: "Male",
+                city: "Chicago",
+                salary: 80000
+            },
+            {
+                firstname: "Alice",
+                lastname: "Williams",
+                age: 28,
+                gender: "Female",
+                city: "Houston",
+                salary: 70000
+            },
+            {
+                firstname: "Bob",
+                lastname: "Brown",
+                age: 40,
+                gender: "Male",
+                city: "Dallas",
+                salary: 90000
+            },
+            {
+                firstname: "Charlie",
+                lastname: "Davis",
+                age: 32,
+                gender: "Male",
+                city: "Miami",
+                salary: 65000
+            },
+            {
+                firstname: "Diana",
+                lastname: "Miller",
+                age: 29,
+                gender: "Female",
+                city: "Seattle",
+                salary: 82000
+            },
+            {
+                firstname: "Eve",
+                lastname: "Wilson",
+                age: 31,
+                gender: "Female",
+                city: "Boston",
+                salary: 78000
+            }
+        ];
+    function sortEmployees(thrs)
+    {
+      document.getElementById("tb").innerHTML=""
+      var semps=employees.toSorted((emp1,emp2) => emp1[thrs]>emp2[thrs]?1:-1)
+      semps.forEach(function(emp){
+        var tr=document.createElement("tr")
+        Object.keys(emp).forEach(function(key){          
+          var td=document.createElement("td")
+          td.innerText=emp[key]
+          tr.appendChild(td)
+        })
+        tb.appendChild(tr)
+      })
+    }
+    sortEmployees()
+</script>
+</body>
+</html>
