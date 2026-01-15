@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #ecom {
+            display: flex;
+        }
+
+        #cart {
+            border: 1px solid;
+            width: 26%
+        }
+
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 70%;
+        }    
+
+        #products div img {
+            width: 100%;
+        }
+    
+       .incdecbtns{
+    height:25px;
+    width:25px;
+    text-align:center;       
+    border-radius:50%;
+    background-color:black;
+    font-weight:bold;    
+    font-size:20px;           
+    color:white;
+  }
+    </style>
+</head>
+
+<body>
+    <h1 id="d2"></h1>
+    <h3>products</h3>
+    <div id="ecom">
+
+        <div id="products">
+        </div>
+        <div id="cart">
+            <h3>Cart <span id="cartCount"></span></h3>
+            <ul id="cartList">
+
+            </ul>
+        </div>
+    </div>
+    <!--<button onclick="nextset()">Next</button>  -->
+    <script>
+        var s = 0;   
+        var cartCount=0;
+        var cartItemsIds=[]
+        var cartItems = [];
+        const products = [
+  { id:1, title:"Essence Mascara Lash Princess", category:"beauty", price:9.99, rating:2.56, stock:99, brand:"Essence" },
+  { id:2, title:"Eyeshadow Palette with Mirror", category:"beauty", price:19.99, rating:2.86, stock:34, brand:"Glamour Beauty" },
+  { id:3, title:"Powder Canister", category:"beauty", price:14.99, rating:4.64, stock:89, brand:"Velvet Touch" },
+  { id:4, title:"Red Lipstick", category:"beauty", price:12.99, rating:4.36, stock:91, brand:"Chic Cosmetics" },
+  { id:5, title:"Red Nail Polish", category:"beauty", price:8.99, rating:4.32, stock:79, brand:"Nail Couture" },
+
+  { id:6, title:"Calvin Klein CK One", category:"fragrances", price:49.99, rating:4.37, stock:29, brand:"Calvin Klein" },
+  { id:7, title:"Chanel Coco Noir Eau De", category:"fragrances", price:129.99, rating:4.26, stock:58, brand:"Chanel" },
+  { id:8, title:"Dior J'adore", category:"fragrances", price:89.99, rating:3.8, stock:98, brand:"Dior" },
+  { id:9, title:"Dolce Shine Eau de", category:"fragrances", price:69.99, rating:3.96, stock:4, brand:"Dolce & Gabbana" },
+  { id:10, title:"Gucci Bloom Eau de", category:"fragrances", price:79.99, rating:2.74, stock:91, brand:"Gucci" },
+
+  { id:11, title:"Annibale Colombo Bed", category:"furniture", price:1899.99, rating:4.77, stock:88, brand:"Annibale Colombo" },
+  { id:12, title:"Annibale Colombo Sofa", category:"furniture", price:2499.99, rating:3.92, stock:60, brand:"Annibale Colombo" },
+  { id:13, title:"Bedside Table African Cherry", category:"furniture", price:299.99, rating:2.87, stock:64, brand:"Furniture Co." },
+  { id:14, title:"Knoll Saarinen Executive Chair", category:"furniture", price:499.99, rating:4.88, stock:26, brand:"Knoll" },
+  { id:15, title:"Wooden Bathroom Sink With Mirror", category:"furniture", price:799.99, rating:3.59, stock:7, brand:"Bath Trends" },
+
+  { id:16, title:"Apple", category:"groceries", price:1.99, rating:4.19, stock:8 },
+  { id:17, title:"Beef Steak", category:"groceries", price:12.99, rating:4.47, stock:86 },
+  { id:18, title:"Cat Food", category:"groceries", price:8.99, rating:3.13, stock:46 },
+  { id:19, title:"Chicken Meat", category:"groceries", price:9.99, rating:3.19, stock:97 },
+  { id:20, title:"Cooking Oil", category:"groceries", price:4.99, rating:4.8, stock:10 },
+
+  { id:21, title:"Cucumber", category:"groceries", price:1.49, rating:4.07, stock:84 },
+  { id:22, title:"Dog Food", category:"groceries", price:10.99, rating:4.55, stock:71 },
+  { id:23, title:"Eggs", category:"groceries", price:2.99, rating:2.53, stock:9 },
+  { id:24, title:"Fish Steak", category:"groceries", price:14.99, rating:3.78, stock:74 },
+  { id:25, title:"Green Bell Pepper", category:"groceries", price:1.29, rating:3.25, stock:33 },
+
+  { id:26, title:"Green Chili Pepper", category:"groceries", price:0.99, rating:3.66, stock:3 },
+  { id:27, title:"Honey Jar", category:"groceries", price:6.99, rating:3.97, stock:34 },
+  { id:28, title:"Ice Cream", category:"groceries", price:5.49, rating:3.39, stock:27 },
+  { id:29, title:"Juice", category:"groceries", price:3.99, rating:3.94, stock:50 },
+  { id:30, title:"Kiwi", category:"groceries", price:2.49, rating:4.93, stock:99 }
+];
+        function genTable(products) {
+            document.getElementById('products').innerHTML=""
+            products.forEach(function(product,i) {
+                var productCard = document.createElement("div")
+                productCard.style.cssText="width:150px;text-align: center;box-shadow: 1px 1px 3px 1px;border-radius: 10px;margin: 5px;padding: 5px;"
+                var productImg = document.createElement("img")
+                productImg.src = product.thumbnail
+                productCard.appendChild(productImg)
+                var productTitle = document.createElement("h4")
+                productTitle.innerText = product.title
+                productCard.appendChild(productTitle)
+                if(!cartItemsIds.includes(product.id))
+                {
+                  var addToCartBtn = document.createElement("button")
+                  addToCartBtn.innerText = 'Add To Cart'
+                  addToCartBtn.onclick = function () { addToCart(product,i) }
+                  productCard.appendChild(addToCartBtn)
+                }
+                else
+                {
+                    var incbtn=document.createElement("button")
+                    incbtn.innerText="+"
+                    incbtn.className="incdecbtns"
+                    incbtn.addEventListener("click",function(){
+                        incPrdctCount(i)
+                    })
+                    var cartPrdtCnt=document.createElement("b")
+                    cartPrdtCnt.innerHTML=product.prdctCount
+                    cartPrdtCnt.style.cssText="margin-left:10px;margin-right:10px"
+                    var decbtn=document.createElement("button")
+                    decbtn.innerText="-"
+                    decbtn.className="incdecbtns" 
+                    decbtn.addEventListener("click",function(){
+                        decPrdctCount(i)
+                    })
+                    productCard.appendChild(decbtn)
+                    productCard.appendChild(cartPrdtCnt)
+                    productCard.appendChild(incbtn)
+                }
+                document.getElementById('products').appendChild(productCard)
+            })
+        }
+        function addToCart(item,i) {
+            products[i].prdctCount=1
+            cartCount++         
+            cartItemsIds.push(products[i].id)            
+            document.getElementById("cartCount").innerText=cartCount
+            cartItems.push(item)
+            genCart();            
+            getProducts()
+        }
+
+        function genCart() {
+            document.getElementById("cartList").innerHTML = ""
+            cartItems.forEach(function (item) {
+                var cli = document.createElement("li")
+                cli.innerText = item.title
+                document.getElementById("cartList").appendChild(cli)
+            })
+        }
+        function getProducts() {
+            /*fetch("https://dummyjson.com/product?limit=40&skip="+s)
+            .then(function(res){return res.json()})    
+            .then(function (data) { */genTable(products);// })
+            //console.log("HI");
+        }
+        function nextset() {
+            s = s + 10;
+            getProducts();
+        }
+
+    function incPrdctCount(i)
+    {
+        products[i].prdctCount++
+        genCart()
+        getProducts()
+    }
+    
+    function decPrdctCount(i)
+    {
+        if(products[i].prdctCount!=0)
+        {
+          products[i].prdctCount--
+          genCart()
+          getProducts()
+        }
+    }
+        getProducts()
+        // function getProducts() {
+        //     var http = new XMLHttpRequest()
+        //     http.open("GET", "https://dummyjson.com/product?limit=10&skip=" + s, true)
+        //     http.send()
+        //     console.log(http.response);
+        //     http.onreadystatechange = function () {
+        //         if (http.readyState == 4) {
+        //             var products = JSON.parse(http.response).products;
+        //             genTable(products)
+        //         }
+        //     }
+        // }
+
+        // function getProducts() {
+        //     fetch("https://dummyjson.com/product?limit=10&skip=" + s)
+        //         .then(function (res) { return res.json() })
+        //         .then(function (data) { console.log(data.products) })
+        //     console.log("HI");
+        // }
+        
+        // http.onloadend = function () {
+        //     console.log(http.response);
+        // }
+
+        // console.log(http.readyState);
+        // console.dir(http)
+        // http.onreadystatechange = function () {
+        //     if (http.readyState === 1) {
+        //         document.getElementById("d1").innerText = "request sent"
+        //     }
+        //     if (http.readyState === 2) {
+        //         document.getElementById("d1").innerText = "request accepted"
+        //     }
+        //     if (http.readyState === 3) {
+        //         document.getElementById("d1").innerText = "Loading...."
+        //     }
+        //     if (http.readyState === 4) {
+        //         document.getElementById("d1").innerText = "Ipoindira chusko"
+        //     }
+        // }
+
+
+        // http.onload = function () {
+        //     // alert("Load Vachindi ramana")
+        //     document.getElementById("d1").innerText = "Loadinguuu.."
+        // }
+        // http.onloadend = function () {
+        //     // alert("Load Ethali ramana")
+        //     document.getElementById("d1").innerText = "Over.."
+
+        // }
+    </script>
+</body>
+
+</html>
+
