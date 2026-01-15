@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <ul id="ulst">    
+  </ul>
+<script>
+  var students = ["Aparna","seetha","Mahesh","Gopasri"];
+  var ul=document.getElementById("ulst")
+  for(var i=0;i<students.length;i++)
+  {
+    var nli=document.createElement("li")
+    nli.innerText=students[i]
+    ul.append(nli)
+  }
+</script>
+</body>
+</html>
