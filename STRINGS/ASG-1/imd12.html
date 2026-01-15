@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var cnt=1,gm=prompt("Enter an Gmail:")
+    if(gm.includes('@') && gm.includes('.')) 
+        if(gm.indexOf('@')<gm.lastIndexOf('.')) 
+        {          
+          cnt=0
+          document.write(`<b>${gm} is Valid!</b>`)
+        }
+     if(cnt)
+      document.write(`<b>${gm} is Not Valid!</b>`)          
+  </script>
+</body>
+</html>

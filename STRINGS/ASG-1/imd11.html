@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n="",s=prompt("Enter a string:")
+    document.write(`Numeric characters in "<b>${s}</b>":`)
+    for(var i=0;i<s.length;i++)
+      if(s[i]>='0' && s[i]<='9')
+      {        
+        n=n.concat(s[i])
+      }
+      document.write("<b>",n,"</b>")        
+  </script>
+</body>
+</html>

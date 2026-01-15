@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  var h="-",crd=prompt("Enter credit number:")
+  var regex=/[^0-9]+/g
+  var arrw=crd.match(regex)
+  if(arrw==null && crd.length==16)
+ 	  document.write(crd.slice(0,4)+h+crd.slice(4,8)+h+crd.slice(8,12)+h+crd.slice(12,16))
+  else
+    document.write("Credit card no. is not valid!")
+</script>
+</body>
+</html> 

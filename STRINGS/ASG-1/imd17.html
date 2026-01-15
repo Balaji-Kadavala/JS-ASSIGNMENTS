@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+	var cnt=0,s=prompt("Enter the string:")
+	var regex=/[a-zA-Z]+/g
+	var arrw=s.match(regex)
+	if(arrw!=null)
+	for(var i=0;i<arrw.length;i++)
+	{
+	   cnt=1
+		  if(arrw.slice(i+1,arrw.length).includes(arrw[i]) && !arrw.slice(0,i).includes(arrw[i]))
+	  {
+	    for(var j=i+1;j<arrw.length;j++)
+	      if(arrw[j]==arrw[i])
+	       cnt++
+	  }
+	  if(!arrw.slice(0,i).includes(arrw[i]))
+    document.write(`${arrw[i]}:${cnt}<br>`)
+	}
+</script>
+</body>
+</html> 

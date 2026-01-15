@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var s=prompt("Enter a string:")
+    document.write(`After eliminating numeric characters from "<b>${s}</b>":`)
+    for(var i=0;i<s.length;i++)
+      if(s[i]>='0' && s[i]<='9')
+      {        
+        s=s.slice(0,i).concat(s.slice(i+1,s.length))
+        i--
+      }
+    document.write("<b>",s,"</b>")
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var arrw,wrds=0,s=prompt("Enter the sentence:")
+    if(s.includes(" "))
+    {
+      arrw=s.split(" ")
+      wrds=arrw.length
+    }
+    if(s.includes(","))
+    {
+      arrw=s.split(",")
+      wrds+=arrw.length-1
+    }
+    if(s.includes("."))
+    {
+      arrw=s.split(".")
+      wrds+=arrw.length-1
+    }
+    document.write(`Total words in "${s}":${wrds}`)
+  </script>
+</body>
+</html>
