@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  const students = [
+  { name: "John", age: 18 },
+  { name: "Emily", age: 20 },
+  { name: "Michael", age: 22 },
+  { name: "Sarah", age: 19 }
+  ];
+  var age=+prompt("Enter the age:")
+  var st=filterStudByAge(age)
+  document.write(`Students older than the specified age:<br>${st.length>0?JSON.stringify(st):"No students found!"}`)
+  
+  function filterStudByAge(age)
+  {
+    let studs=students.filter((s)=>s.age>age)
+    return studs
+  }
+</script>
+</body>
+</html>

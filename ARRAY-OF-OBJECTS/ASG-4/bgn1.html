@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const students = [ 
+    { name: "John", age: 18 }, 
+    { name: "Emily", age: 20 }, 
+    { name: "Michael", age: 22 }, 
+    { name: "Sarah", age: 19 }, 
+    ]; 
+  function ageOfStudent(n)
+  {
+    var pers=students.find(p => p.name==n)
+    if(pers)
+      return pers.age
+    else
+      return null
+  }
+  var name=prompt("Enter your name:")
+  document.write(ageOfStudent(name))
+</script>
+</body>
+</html> 

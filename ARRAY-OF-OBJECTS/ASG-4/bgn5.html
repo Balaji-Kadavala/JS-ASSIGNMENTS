@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    const students = [
+    { name: "John", age: 18 },
+    { name: "Emily", age: 20 },
+    { name: "Michael", age: 22 },
+    { name: "Sarah", age: 19 }
+    ];
+    function removeStudent(name)
+    {
+      let remele=0;
+      students.forEach(function(s,i){
+        if(s.name.toLowerCase()==name)
+          remele=students.splice(i,1).length
+      })
+      if(remele==0)
+        return "Student not found!"
+      else
+        return `Student removed successfulyy!!!<br>New Array:${JSON.stringify(students)}`
+    }
+    var name=prompt(`Enter a name (${JSON.stringify(students)}):`).toLowerCase()
+    document.write(removeStudent(name))
+  </script>
+</body>
+</html>

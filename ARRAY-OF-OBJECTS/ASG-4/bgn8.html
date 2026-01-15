@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+<script>
+  const students = [
+  { name: "John", age: 18 },
+  { name: "Emily", age: 20 },
+  { name: "Michael", age: 22 },
+  { name: "Sarah", age: 19 }
+  ];
+  document.write("Students sorted based on age in Asc order:<br>")
+  sortByAge().forEach((s)=>document.write(JSON.stringify(s),"<br>"))
+  
+  function sortByAge()
+  {    
+    return students.sort((s1,s2)=>s1.age-s2.age)
+  }
+</script>
+</body>
+</html>
