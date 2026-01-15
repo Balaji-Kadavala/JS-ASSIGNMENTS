@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<style>
+  #addReditCnct{
+    width:250px;
+    border-radius:3px
+  }
+</style>
+<body>  
+  <label for="cname">Name:</label>
+  <input type="text" id="cname" required><br>
+  <label for="cnum">Number:</label>
+  <input type="text" id="cnum" required><br>
+  <label for="cmail">Email:</label>
+  <input type="text" id="cmail" required><br>
+  <label for="cimg">Image:</label>
+  <input type="file" id="cimg" required><br><br>
+  <button id="addReditCnct" onclick="addContact()">Add Contact</button><br><br>
+  <div id="contacts"></div>
+  <script>
+  var cncts=[{name:"Balu",number:"9502454903",email:"balaji.kadavala@gmail.com",image:"blob:http://localhost:57413/d56a303b-a92d-48cc-b337-13d20ed6c3d4"}]
+  var editIdx=-1  
+  var cntsdiv=document.getElementById("contacts")
+  var cname=document.getElementById("cname")
+  var cnum=document.getElementById("cnum")    
+  var cmail=document.getElementById("cmail")
+  var cimg=document.getElementById("cimg")  
+  var btn=document.getElementById("addReditCnct")
+  btn.style.cssText="background-color:skyblue;"
+  function addContact()
+  {
+    var cnct={}
+    cnct.name=cname.value
+    cnct.number=cnum.value
+    cnct.email=cmail.value
+    if(cimg.files.length)
+      cnct.image=URL.createObjectURL(cimg.files[0])  
+    else
+      cnct.image=""    
+    cncts.push(cnct)
+    eraseFields()
+    displayContacts()
+  }  
+  function displayContacts()
+  {
+    cntsdiv.innerHTML=""
+    cncts.forEach(function(cnt,i){      
+      var div=document.createElement("div")
+      div.style.cssText="height:200px;width:300px;padding:10px;border-radius:5px;border:2px solid red;background-color:yellow;position:relative"
+      var img=document.createElement("img")
+      img.src=cnt.image
+      img.style.cssText="height:50px;width:50px;border-radius:50%;display:block;margin:0 auto"
+      var del=document.createElement("span")
+      del.innerText="X"
+      del.style.cssText="color:red;font-weight:bold;top:5px;margin-left:285px;"
+      del.addEventListener("click",function(){
+        removeContact(i)
+      })
+      var pnm=document.createElement("p")
+      pnm.innerText="Name:"+cnt.name  
+      pnm.style="display:block"
+      var pnum=document.createElement("p")
+      pnum.innerText="Number:"+cnt.number 
+      pnum.style="display:block"
+      var pem=document.createElement("p")
+      pem.innerText="Email:"+cnt.email 
+      pem.style="display:block"      
+      var editBtn=document.createElement("button")
+      editBtn.innerText="Edit"
+      editBtn.style.cssText="background-color:skyblue;border-radius:5px;margin-left:260px"
+      editBtn.addEventListener("click",function(){
+        editContact(i)
+      })
+      div.appendChild(del)
+      div.appendChild(img)      
+      div.appendChild(pnm)
+      div.appendChild(pnum)
+      div.appendChild(pem)
+      div.appendChild(editBtn)
+      cntsdiv.appendChild(div)
+      cntsdiv.appendChild(document.createElement("br"))
+    })
+  }
+  
+  function editContact(i)
+  {
+    editIdx=i
+    cname.value=cncts[i].name
+    cnum.value=cncts[i].number
+    cmail.value=cncts[i].email  
+    cimg.files[0]=cncts[i].image    
+    btn.onclick=saveContact
+    btn.innerText="Save Contact"
+    btn.style.cssText="background-color:orange"
+  }
+  
+  function saveContact()
+  {    
+    cncts[editIdx].name=cname.value
+    cncts[editIdx].number=cnum.value
+    cncts[editIdx].email=cmail.value
+    cncts[editIdx].image=cimg.files.length>0?URL.createObjectURL(cimg.files[0]):cncts[editIdx].image
+    eraseFields()
+    console.log(cncts[editIdx])
+    btn.onclick=addContact
+    btn.innerText="Add Contact"
+    btn.style.cssText="background-color:skyblue;"
+    displayContacts()    
+  }
+  
+  function eraseFields()
+  {
+    cname.value=""
+    cnum.value=""
+    cmail.value=""  
+    cimg.value=""  
+  }
+  
+  function removeContact(i)
+  {
+    var ok=confirm("You are deleting the contact of ["+cncts[i].name+"]. Are you sure?")
+    if(ok)
+    {
+      cncts.splice(i,1)
+      displayContacts()
+    }    
+  }
+  displayContacts()
+  </script>
+</body>
+</html>

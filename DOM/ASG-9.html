@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  body{
+    background-color:pink    
+  }
+  input,button{
+    border-radius:5px
+  }
+  input{
+    height:40px;
+    width:230px;
+    border:2px solid;
+    margin-right:5px;
+  }
+  button{
+    height:40px;
+    width:90px;
+    border:2px solid;    
+    background-color:skyblue
+  }
+  </style>
+</head>
+<body>
+  <h1>Add Students</h1>
+  <input id="inp" type="text" placeholder="Enter student name here!">
+  <button onclick="addStudent()">Add Student</button>
+  <ul id="stdlst"></ul>  
+  <script>
+  var names=[]
+  var inp=document.getElementById("inp")   
+  var stdlst=document.getElementById("stdlst")
+  function addStudent()
+  {
+    names.push(inp.value)    
+    displayStuds()
+  }
+  function displayStuds()
+  {
+    stdlst.innerText=""
+    names.forEach(function(name){
+    var nli=document.createElement("li")
+    nli.innerText=name
+    nli.style.color="red"
+    stdlst.appendChild(nli)
+    })
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  #btn{
+    height:25px;
+    width:60px;
+    margin-right:30px
+  }
+  </style>
+</head>
+<body>
+  <button id="btn"><big>Toggle</big></button>
+  <b id="bool">true</b>
+  <script>
+  var btn=document.getElementById("btn")
+  var bool=document.getElementById("bool")
+  btn.addEventListener("click",function(){
+  if(bool.innerText=="true")    
+    bool.innerText="false"    
+  else
+    bool.innerText="true" 
+  })
+  </script>
+</body>
+</html>

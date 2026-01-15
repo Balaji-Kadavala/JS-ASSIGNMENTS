@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>  
+  <label for="cname">Name:</label>
+  <input type="text" id="cname" required><br>
+  <label for="cnum">Number:</label>
+  <input type="text" id="cnum" required><br>
+  <label for="cmail">Email:</label>
+  <input type="text" id="cmail" required><br>
+  <label for="cimg">Image:</label>
+  <input type="file" id="cimg" required><br>
+  <button id="AddCnct" onclick="addContact()">Add Contact</button><br>
+  <div id="contacts"></div>
+  <script>
+  var cncts=[]  
+  var cntsdiv=document.getElementById("contacts")
+  var cname=document.getElementById("cname")
+  var cnum=document.getElementById("cnum")    
+  var cmail=document.getElementById("cmail")
+  var cimg=document.getElementById("cimg")  
+  function addContact()
+  {
+    var cnct={}
+    cnct.name=cname.value
+    cnct.number=cnum.value
+    cnct.email=cmail.value
+    cnct.image=URL.createObjectURL(cimg.files[0])    
+    cncts.push(cnct)
+    displayContacts()
+  }  
+  function displayContacts()
+  {
+    cntsdiv.innerHTML=""
+    cncts.forEach(function(cnt){      
+      var div=document.createElement("div")
+      div.style.cssText="height:150px;width:250px;padding:10px;border-radius:5px;border:2px solid red;background-color:yellow"
+      var img=document.createElement("img")
+      img.src=cnt.image
+      img.style.cssText="height:50px;width:50px;border-radius:50%;display:block;margin:0 auto"
+      var pnm=document.createElement("p")
+      pnm.innerText="Name:"+cnt.name  
+      pnm.style="display:block"
+      var pnum=document.createElement("p")
+      pnum.innerText="Number:"+cnt.number 
+      pnum.style="display:block"
+      var pem=document.createElement("p")
+      pem.innerText="Email:"+cnt.email 
+      pem.style="display:block"      
+      div.appendChild(img)
+      div.appendChild(pnm)
+      div.appendChild(pnum)
+      div.appendChild(pem)
+      cntsdiv.appendChild(div)
+      cntsdiv.appendChild(document.createElement("br"))
+    })
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<style>
+  #addReditCnct{
+    width:250px;
+    border-radius:3px
+  }
+</style>
+<body>  
+  <div>
+  <label for="cname">Name:</label>
+  <input type="text" id="cname" onfocus="eraseFields()" required><br>
+  <label for="cnum">Number:</label>
+  <input type="text" id="cnum" required><br>
+  <label for="cmail">Email:</label>
+  <input type="text" id="cmail" required><br>    
+  <button id="addReditCnct" onclick="addContact()">Add Contact</button><br>
+  <img id="ascSortImg" src="ascending-sorting_313674-28359.jpg" height="30px" width="30px">
+  <img id="desSortImg" src="png-transparent-alphabetical-order-sorting-algorithm-computer-icons-desc-angle-text-trademark.png" height="30px" width="30px">
+  <table id="tbl">
+    <thead>
+      <th id="name"></th>
+      <th id="num"></th>
+      <th id="mail"></th>
+      <th id="modfy"></th>
+      <th id="del"></th>
+    </thead>    
+    <tbody id="tb">
+      
+    </tbody>
+  </table>
+  </div>
+  <script>
+  var cncts=[{name:"Balu",number:"9502454903",email:"balaji.kadavala@gmail.com"}]  
+  var editIdx=-1  
+  var empty=0
+  var tbl=document.getElementById("tbl")
+  var tblbd=document.getElementById("tb")
+  var cname=document.getElementById("cname")
+  var cnum=document.getElementById("cnum")    
+  var cmail=document.getElementById("cmail")  
+  var btn=document.getElementById("addReditCnct")
+  var ascSortImg=document.getElementById("ascSortImg")
+  var desSortImg=document.getElementById("desSortImg")
+  var tb=document.getElementById("tb")  
+  tbl.border="2px"
+  ascSortImg.onclick=sortCnctsAsc
+  ascSortImg.style.cssText="margin-right:175px"
+  desSortImg.onclick=sortCnctsDes  
+  btn.style.cssText="background-color:skyblue;"  
+  cname.value="User1"
+  cnum.value="1234567890"
+  cmail.value="user1@gmail.com"    
+  function addContact()
+  {            
+    if(cname.value=="" && cnum.value=="" && cmail.value=="")
+    {
+      alert("Please enter contact details to add!")
+      return
+    }
+    var cnct={}
+    cnct.name=cname.value
+    cnct.number=cnum.value
+    cnct.email=cmail.value    
+    cncts.push(cnct)
+    eraseFields()
+    displayContacts()
+    cname.onfocus=""
+  }  
+  function displayContacts()
+  {    
+    document.getElementById("name").innerText="Name"
+    document.getElementById("num").innerText="Number"
+    document.getElementById("mail").innerText="Email"
+    document.getElementById("modfy").innerText="Modify"
+    document.getElementById("del").innerText="Delete"
+    tblbd.innerHTML=""
+    cncts.forEach(function(cnt,i){ 
+      var tr=document.createElement("tr")      
+      var tbnm=document.createElement("td")
+      tbnm.innerText=cnt.name
+      var tbnum=document.createElement("td")
+      tbnum.innerText=cnt.number
+      var tbem=document.createElement("td")
+      tbem.innerText=cnt.email
+      var edtImg=document.createElement("img")
+      edtImg.src="20260114_050535.png"      
+      edtImg.style.cssText="height:45px;width:45px"
+      var tbedt=document.createElement("td")
+      tbedt.appendChild(edtImg)
+      tbedt.addEventListener("click",function(){
+        editContact(i)
+      })
+      var dltImg=document.createElement("img")
+      dltImg.src="20260114_050516.png"
+      dltImg.style.cssText="height:45px;width:45px"       
+      var tbdlt=document.createElement("td")      
+      tbdlt.appendChild(dltImg)  
+      tbdlt.addEventListener("click",function(){
+        removeContact(i)
+      })
+      tr.appendChild(tbnm)
+      tr.appendChild(tbnum)
+      tr.appendChild(tbem)
+      tr.appendChild(tbedt)
+      tr.appendChild(tbdlt)
+      tb.appendChild(tr)
+    })           
+  }
+  
+  function editContact(i)
+  {
+    editIdx=i
+    cname.value=cncts[i].name
+    cnum.value=cncts[i].number
+    cmail.value=cncts[i].email      
+    btn.onclick=saveContact
+    btn.innerText="Save Contact"
+    btn.style.cssText="background-color:orange"
+  }
+  
+  function saveContact()
+  {    
+    cncts[editIdx].name=cname.value
+    cncts[editIdx].number=cnum.value
+    cncts[editIdx].email=cmail.value    
+    eraseFields()    
+    btn.onclick=addContact
+    btn.innerText="Add Contact"
+    btn.style.cssText="background-color:skyblue;"
+    displayContacts()    
+  }
+  
+  function eraseFields()
+  {
+    cname.value=""
+    cnum.value=""
+    cmail.value=""      
+  }
+  
+  function removeContact(i)
+  {
+    var ok=confirm("You are deleting the contact of ["+cncts[i].name+"]. Are you sure?")
+    if(ok)
+    {
+      cncts.splice(i,1)          
+      displayContacts()
+    }    
+  }
+  
+  function sortCnctsAsc()
+  {    
+    cncts.sort((cnt1,cnt2) => cnt1.name>cnt2.name?1:-1)
+    displayContacts()
+  }
+  
+  function sortCnctsDes()
+  {
+    cncts.sort((cnt1,cnt2) => cnt1.name>cnt2.name?-1:1)
+    displayContacts()
+  }      
+      
+  displayContacts()
+  </script>
+</body>
+</html>

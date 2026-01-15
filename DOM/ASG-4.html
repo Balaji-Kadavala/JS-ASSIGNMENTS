@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  #divs{
+    height:300px;
+    width:300px;
+    border:2px solid;
+  }
+  
+  .yellow{
+    background-color:yellow
+  }
+  </style>
+</head>
+<body>
+  <div id="divs"></div><br>
+  <button id="tglBtn" onclick="tglClr()">Toggle</button>  
+  <script>
+  var div=document.getElementById("divs")
+  var tglb=document.getElementById("tglBtn")  
+  function tglClr()
+  {
+    div.classList.toggle("yellow")
+  }
+  </script>
+</body>
+</html>

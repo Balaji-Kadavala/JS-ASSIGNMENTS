@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  .white{
+    background-color:white
+  }
+  .green{
+    background-color:green
+  }
+  #btn{
+    height:25px;
+    width:60px;
+    border-radius:5px
+  }
+  </style>
+</head>
+<body>
+  <button id="btn" class="white">White</button>
+  <script>
+  var btn=document.getElementById("btn")
+  btn.addEventListener("click",function(){
+  if(btn.innerText=="White")
+  {
+    btn.classList.remove("white")
+    btn.classList.add("green")
+    btn.innerText="Green"
+  }
+  else
+  {
+    btn.classList.remove("green")
+    btn.classList.add("white")
+    btn.innerText="White"
+  }
+  })
+  </script>
+</body>
+</html>

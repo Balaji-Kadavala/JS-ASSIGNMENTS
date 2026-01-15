@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  #divs{
+    height:200px;
+    width:200px;
+    border:2px solid;
+  }
+  button{
+    height:20px;
+    width:40px;
+  }
+  .red{
+    background-color:red
+  }
+  .white{
+    background-color:white
+  }
+  </style>
+</head>
+<body>
+  <div id="divs"></div><br>
+  <button id="onBtn" onclick="on()">ON</button>
+  <button id="offBtn" onclick="off()">OFF</button>
+  <script>
+  var div=document.getElementById("divs")
+  var onb=document.getElementById("onBtn")
+  var offb=document.getElementById("offBtn")
+  function on()
+  {
+    div.style.cssText="background-color:yellow"
+    onb.classList.remove("white")
+    onb.classList.add("red")
+    offb.classList.remove("red")
+    offb.classList.add("white")
+  }
+  function off()
+  {
+    div.style.cssText="background-color:None"
+    offb.classList.remove("white")
+    offb.classList.add("red")
+    onb.classList.remove("red")
+    onb.classList.add("white")
+  }
+  </script>
+</body>
+</html>

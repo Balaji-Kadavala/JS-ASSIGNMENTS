@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  button{
+    height:50px;
+    width:100px;
+    margin-right:40px;
+    margin-bottom:10px;
+    border-radius:5px
+  }
+  #lk{
+    background-color:lightgreen
+  }
+  #dslk{
+    background-color:red
+  }
+  </style>
+</head>
+<body>  
+  <h1>Like & Dislike Button</h1>  
+  <button id="lk" onclick="likeCnt()">Like</button>
+  <b id="lkcnt"><big>0</big></b><br>
+  <button id="dslk" onclick="dislikeCnt()">Dislike</button>
+  <b id="dslkcnt"><big>0</big></b>
+  <script>
+  var lkcnt=dslkcnt=0
+  var lk=document.getElementById("lk")
+  var dslk=document.getElementById("dslk")    
+  var lkcntt=document.getElementById("lkcnt")
+  var dslkcntt=document.getElementById("dslkcnt")
+  function likeCnt()
+  {
+    lkcnt++
+    lkcntt.innerText=lkcnt
+  }
+  function dislikeCnt()
+  {
+    dslkcnt++
+    dslkcntt.innerText=dslkcnt
+  }
+  </script>
+</body>
+</html>
+<!--
+https://picsum.photos/200
+https://picsum.photos/300
+https://picsum.photos/200/300
+https://picsum.photos/400
+
+https://images.unsplash.com/photo-1501785888041-af3ef285b470
+https://images.unsplash.com/photo-1500530855697-b586d89ba3ee
+>

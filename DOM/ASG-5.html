@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<style>
+#image{
+  height:200;
+  width:200
+}
+</style>
+<body>
+  <img id="image" src="Screenshot_20260112_190725_Chrome.jpg"><br>
+  <button id="btn" onclick="toggleImg()">On</button>
+  <script>
+  var btn=document.getElementById("btn")
+  var img=document.getElementById("image")
+  function toggleImg()
+  {
+    if(btn.innerText=="On")
+    {
+      btn.innerText="Off"
+      img.src="20260112_191236.jpg"
+    }
+    else
+    {
+      btn.innerText="On"
+      img.src="Screenshot_20260112_190725_Chrome.jpg"
+    }
+  }
+  </script>
+</body>
+</html>
