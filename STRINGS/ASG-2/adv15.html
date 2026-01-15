@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+  var fobj=[]  
+ 	 for(i=0;i<fruits.length;i++)  	   
+ 	 { 
+    var obj={}
+    obj[fruits[i]]=fruits[i].length
+ 	   document.write(JSON.stringify(obj),"<br>")
+    fobj.push(obj)
+ 	 } 	   
+ 	 document.write(JSON.stringify(fobj))     
+</script>
+</body>
+</html> 

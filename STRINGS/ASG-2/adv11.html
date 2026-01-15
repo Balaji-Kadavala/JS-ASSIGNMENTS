@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+  var ch,regex,chrs
+  document.write(`Letter count in [${fruits}]:<br>`)
+ 	 for(var i=65;i<=122;i++)  	   
+ 	 {
+ 	   if(i==91)
+ 	      i=97
+ 	   if(i>=65 && i<=90 || i>=97 && i<=122)
+ 	   {
+ 	     ch=String.fromCharCode(i)
+ 	     regex = new RegExp(ch, "g"); 	//To insert a variable value into regex    
+ 	     chrs=fruits.join('').match(regex)
+ 	     if(chrs)
+ 	      document.write(ch," : ",chrs.length,"<br>")
+ 	     //else
+ 	       //document.write(ch," : 0<br>")
+ 	   }
+ 	 }
+</script>
+</body>
+</html> 

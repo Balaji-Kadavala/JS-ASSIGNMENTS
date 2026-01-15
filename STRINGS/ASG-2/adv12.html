@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+  var pos,temp
+  document.write(fruits,"<br>")  
+ 	 for(var i=0;i<fruits.length;i++)  	   
+ 	 {
+ 	   pos=Math.floor(Math.random()*fruits.length)
+ 	   temp=fruits[i]
+ 	   fruits[i]=fruits[pos]
+ 	   fruits[pos]=temp
+ 	 }
+ 	 document.write(fruits)
+</script>
+</body>
+</html> 
