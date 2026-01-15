@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+  var i,j,k,n=1;
+  for(i=1;i<=5;i++){
+    for(j=1;j<=5-i;j++)
+      document.write("&nbsp;&nbsp;&nbsp")
+    for(k=1;k<=i;k++)
+      if(i<5)
+        document.write(n++,"&nbsp;&nbsp;&nbsp")
+      else
+        document.write(n++,"&nbsp;")
+    document.write("<br>")
+  }      
+  </script>
+</body>
+</html>
