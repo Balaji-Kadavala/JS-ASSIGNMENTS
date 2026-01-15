@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const animals=["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  var scanm=[]
+  document.write("<b>Original array:</b>",animals)
+  for(var i=0;i<animals.length;i++)
+    if(animals[i][0]=="C")
+    {
+      scanm.push(animals[i])
+      animals.splice(i,1)
+      i--
+    }    
+  document.write("<br><b>After moving animals start with 'C':<br>Original array:</b>",animals,"<br><b>New array:</b>",scanm)
+</script>
+</body>
+</html> 

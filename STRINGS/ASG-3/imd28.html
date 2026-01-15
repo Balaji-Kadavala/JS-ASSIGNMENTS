@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>  
+  const animals=["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  var ch,regex,chrs,ltrc=0,ltr=[]
+ 	 for(var i=65;i<=122;i++)  	   
+ 	 {
+ 	   if(i==91)
+ 	      i=97
+ 	   if(i>=65 && i<=90 || i>=97 && i<=122)
+ 	   {
+ 	     ch=String.fromCharCode(i)
+ 	     regex = new RegExp(ch, "g"); 	//To insert a variable value into regex    
+ 	     chrs=animals.join('').match(regex)
+      if(chrs!=null) 	    	     
+ 	      if(chrs.length>ltrc)
+ 	      {
+ 	         ltrc=chrs.length
+ 	         ltr=[]
+   	       ltr.push(chrs[0])
+ 	      } 	   
+       else if(chrs.length==ltrc)
+ 	          ltr.push(chrs[0]) 	        	       
+ 	   }
+ 	 }
+ 	 document.write("Most frequent letter(s) in all animals:",ltr)
+</script>
+</body>
+</html> 

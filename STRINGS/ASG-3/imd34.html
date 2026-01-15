@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const animals=["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  var clt,anm=[],ind,len=0,len1=0,cnt=0
+  for(var i=0;i<animals.length;i++)
+  {
+    clt=animals[i].match(/([a-zA-Z])\1+/g)
+    if(clt!=null)    
+    {      
+      clt.forEach(function(l,i){
+        if(l.length>len)
+        {
+          len=l.length
+          ind=i
+        }
+      })
+      if(clt[ind].length>len1)
+      {
+        anm.splice(0,anm.length)
+        anm.push(animals[i])
+        len1=clt[ind].length  
+        cnt=1        
+      }
+      else if(clt[ind].length==len1)
+      {
+        anm.push(animals[i])
+        cnt++
+      } 
+    }
+  }
+  if(cnt!=0)
+    document.write("Animal(s) (",cnt,") with most consecutive repeated letters:",anm)
+  else 
+    document.write("No animal with consecutive letters!")
+</script>
+</body>
+</html> 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const animals=["Lionoil","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Pandadnap","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  var cnt=0
+  document.write("Palindromes in all animals:<br>")
+  for(var i=0;i<animals.length;i++)
+    if(animals[i].toLowerCase()==animals[i].split('').reverse().join('').toLowerCase())
+    {
+      document.write(animals[i],"<br>")
+      cnt=1
+    }
+  if(cnt==0)
+    document.write("<br>No palindrome names")
+</script>
+</body>
+</html> 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const animals=["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  //var sanm=animals.toSorted((a,b)=> a[a.length-1]>b[b.length-1]?1:-1)
+  document.write("Original array:",animals,"<br>")
+  document.write("Sorted based last letter of the ele:")
+  for(var i=0;i<animals.length;i++)
+    document.write(animals.toSorted((a,b)=> a[a.length-1]>b[b.length-1]?1:-1)[i],i!=animals.length-1?",":".")    
+    
+  //document.write("<br>Sorted array:",sanm)    
+</script>
+</body>
+</html> 

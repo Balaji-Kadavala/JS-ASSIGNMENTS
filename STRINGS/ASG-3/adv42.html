@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const animals=["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  var regex=/(a|e|i|o|u|A|E|I|O|U)/g
+  document.write("Animals contain atleast 3 vowels:")
+  for(var i=0;i<animals.length;i++) 
+  {    
+    var vwl=animals[i].match(regex)
+    if(vwl!=null)    
+      if(vwl.length>=3)
+        document.write("<br>",animals[i]) 
+  }    
+</script>
+</body>
+</html> 

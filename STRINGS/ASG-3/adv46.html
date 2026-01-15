@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const animals=["Lion","Tiger","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Tiger","Panda","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Panda","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  var ele=prompt(`Enter element to remove from [${animals}]:`)
+  document.write("Before:",animals)
+  removeEle(animals,ele)
+  document.write("<br>After:",animals)
+    
+  function removeEle(arr,ele){
+    for(i=0;i<arr.length;i++)
+      if(arr[i]==ele)
+      {
+        arr.splice(i,1)
+        i--
+      }
+    return arr
+  }      
+</script>
+</body>
+</html> 

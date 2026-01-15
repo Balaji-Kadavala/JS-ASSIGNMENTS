@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const animals=["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit","Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark","Whale","Octopus","Jellyfish","Starfish"];
+  var regex=/(a|e|i|o|u)/g
+  var cnt=0
+  animals.forEach(function (a) {
+    if((a.match(regex).length)>=2)
+    cnt++
+  })   
+  document.write("There are total ",cnt," animals have atleast two vowels")
+</script>
+</body>
+</html> 
