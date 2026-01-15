@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,n1,b,i,r;
+    n=8
+    n1=n
+    b=i=0
+    while(n>0){
+      r=n%2
+      b=r*(10**i)+b      
+      n=parseInt(n/2)
+      i++
+    }
+    document.write(`Binary value of ${n1}:${b}`)
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,dig,n1,dn,cnt=0;
+    n=+prompt("Enter a number:")
+    n1=n
+    document.write(`Digits less than ${n}:`)
+    while(n1>0){
+      cnt++
+      n1=parseInt(n1/10)
+    }
+    dn=10**cnt
+    n1=n  
+    while(n1>0){
+      dn=dn/10      
+      dig=parseInt(n1/dn)  
+      if(dig<5)      
+        document.write(dig+" ")  
+      n1=n1%dn
+    }
+  </script>
+</body>
+</html>

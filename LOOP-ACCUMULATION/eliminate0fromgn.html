@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,nw,i,r;
+    nw=i=0
+    n=+prompt("Enter a number:")
+    document.write(`After removing ones of ${n}:`)
+    while(n>0){
+      if(n%10!=1){
+        r=n%10
+        nw=r*(10**i)+nw      
+        i++
+      }
+      n=parseInt(n/10)      
+    }
+    if(nw!=0)
+      document.write(nw)
+    else
+      document.write("None")
+  </script>
+</body>
+</html>

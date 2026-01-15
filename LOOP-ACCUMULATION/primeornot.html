@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,i=2,cnt=0;
+    n=+prompt("Enter a number:")
+    while(i*2<n){
+      if(!(n%i))
+        cnt++
+      i++
+    }
+    document.write(!cnt?"It's a Prime!":"Not a Prime!")
+  </script>
+</body>
+</html>

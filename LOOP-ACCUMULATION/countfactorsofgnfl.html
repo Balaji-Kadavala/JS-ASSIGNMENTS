@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,cnt=0;
+    n=+prompt("Enter a number:")
+    document.write(`Total number of factors of ${n}:`)
+    for(i=1;i<=n;i++)
+        if(!(n%i))
+         cnt++       
+    document.write(cnt)  
+  </script>
+</body>
+</html>

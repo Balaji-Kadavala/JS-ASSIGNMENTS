@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+  var n,n1,cnt=sum=0
+  n=+prompt("Enter a number:")
+  n1=n
+  while(n>0){
+    cnt++
+    n=parseInt(n/10)
+  }
+  n=n1
+  while(n1>0){
+    sum+=(n1%10)**cnt
+    n1=parseInt(n1/10)
+  }
+  document.write(n==sum?"It's an Armstrong!":"Not an Armstrong!")
+  </script>
+</body>
+</html>

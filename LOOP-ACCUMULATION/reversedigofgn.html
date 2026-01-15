@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+  var n;
+  n=+prompt("Enter a number:")
+  document.write(`Digits of ${n} in reverse order:`)
+  while(n>0){
+    document.write(n%10)   //rev=rev*10+(n%10)  print rev & intially it's 0
+    n=parseInt(n/10)
+  }
+  </script>
+</body>
+</html>

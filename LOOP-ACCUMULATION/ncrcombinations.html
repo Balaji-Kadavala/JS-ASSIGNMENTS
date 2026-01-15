@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+  var n,r,ncr,fn=fr=fnr=1;
+  n=+prompt("Enter total no. of distinct items:")
+  r=+prompt("Enter no. of chosen items:")
+  for(i=1;i<=n;i++)
+    fn*=i    
+  for(i=1;i<=r;i++)
+    fr*=i    
+  for(i=1;i<=n-r;i++)
+    fnr*=i    
+  ncr=fn/(fr*fnr)  
+  document.write(`${n}C${r}:${ncr}`)  
+  </script>
+</body>
+</html>

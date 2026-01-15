@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+  var m,n,pdt=1
+  m=+prompt("Enter first number:")
+  n=+prompt("Enter second number:")
+  for(var i=m+1;i<n;i++)
+    if(i%2)
+      pdt*=i
+  document.write(`Product of odds between ${m} & ${n}:${pdt}`)
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+  var n,n1,rev=0;
+  n=+prompt("Enter a number:")
+  n1=n
+  while(n>0){
+    rev=rev*10+(n%10)
+    n=parseInt(n/10)
+  }
+  document.write(rev==n1?"It's a Palindrome!":"Not a Palindrome!")
+  </script>
+</body>
+</html>

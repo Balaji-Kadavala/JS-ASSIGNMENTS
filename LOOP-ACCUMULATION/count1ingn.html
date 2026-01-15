@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+  var n,n1,cnt=0
+  n=+prompt("Enter a number:")
+  n1=n
+  while(n>0){
+    if(n%10==1)
+      cnt++
+    n=parseInt(n/10)
+  }
+  document.write(`No of ones in ${n1}:${cnt}`)  
+  </script>
+</body>
+</html>
