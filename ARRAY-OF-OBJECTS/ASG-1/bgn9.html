@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  var people = [ 
+ { 
+ "firstname": "praveen", 
+ "lastname": "gubbala", 
+ "age": 36, 
+ "gender": "male", 
+ "city": "hyd", 
+ "salary": 10000
+ }, 
+ { 
+ "firstname": "srikanth", 
+ "lastname": "gubbala", 
+ "age": 32, 
+ "gender": "male", 
+ "city": "bengaluru", 
+ "salary": 20000
+ }, 
+ { 
+ "firstname": "pradeep", 
+ "lastname": "reddy", 
+ "age": 21, 
+ "gender": "male", 
+ "city": "hyd", 
+ "salary": 25000
+ }, 
+ { 
+ "firstname": "mounika", 
+ "lastname": "mudiraj", 
+ "age": 20, 
+ "gender": "female", 
+ "city": "nalgonda", 
+ "salary": 30000 }, 
+ { 
+ "firstname": "nikhil", 
+ "lastname": "m", 
+ "age": 22, 
+ "gender": "male", 
+ "city": "guntur", 
+ "salary": 20000
+ }, 
+ { 
+ "firstname": "riya", 
+ "lastname": "bhadouria", 
+ "age": 14, 
+ "gender": "female", 
+ "city": "indore", 
+ "salary": 40000
+ } 
+ ];   
+  document.write("<b>People with salary greater than 25K:</b><br>")
+  var ppl=people.filter(function(p){
+    if(p.salary>25000)   
+      return true
+  })  
+  ppl.forEach(function(p){
+    document.write(p.firstname,"<br>")
+  })
+</script>
+</body>
+</html> 

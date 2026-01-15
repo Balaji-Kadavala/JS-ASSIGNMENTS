@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  var people = [ 
+ { 
+ "firstname": "praveen", 
+ "lastname": "gubbala", 
+ "age": 36, 
+ "gender": "male", 
+ "city": "hyd", 
+ "salary": 10000
+ }, 
+ { 
+ "firstname": "srikanth", 
+ "lastname": "gubbala", 
+ "age": 32, 
+ "gender": "male", 
+ "city": "bengaluru", 
+ "salary": 20000
+ }, 
+ { 
+ "firstname": "pradeep", 
+ "lastname": "reddy", 
+ "age": 21, 
+ "gender": "male", 
+ "city": "hyd", 
+ "salary": 25000
+ }, 
+ { 
+ "firstname": "mounika", 
+ "lastname": "mudiraj", 
+ "age": 20, 
+ "gender": "female", 
+ "city": "nalgonda", 
+ "salary": 30000 }, 
+ { 
+ "firstname": "nikhil", 
+ "lastname": "m", 
+ "age": 22, 
+ "gender": "male", 
+ "city": "guntur", 
+ "salary": 20000
+ }, 
+ { 
+ "firstname": "riya", 
+ "lastname": "bhadouria", 
+ "age": 14, 
+ "gender": "female", 
+ "city": "indore", 
+ "salary": 40000
+ } 
+ ]; 
+  var ct=prompt("Enter the city:")
+  ppl=people.filter(function(a){
+    if(a.city==ct)
+      return true
+  })
+  if(ppl.length)
+    document.write("People with given city:",JSON.stringify(ppl))
+  else
+    document.write("No people with the given city!")
+</script>
+</body>
+</html> 
