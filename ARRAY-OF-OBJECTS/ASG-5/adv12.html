@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const employees = [
+  {id:1,name:"John Doe",department:"Engineering",salary:55000,status:"active"},
+  {id:2,name:"Jane Smith",department:"Marketing",salary:60000,status:"inactive"},
+  {id:3,name:"Michael Johnson",department:"Engineering",salary:75000,status:"active"},
+  {id:4,name:"Emily Davis",department:"Human Resources",salary:48000,status:"active"},
+  {id:5,name:"Chris Lee",department:"Marketing",salary:53000,status:"inactive"},
+  {id:6,name:"Sarah Brown",department:"Engineering",salary:62000,status:"active"},
+  {id:7,name:"David Wilson",department:"Human Resources",salary:47000,status:"active"},
+  {id:8,name:"Anna White",department:"Marketing",salary:59000,status:"inactive"}
+  ];
+  function depAvgSal()
+  {
+    var i,davgsal={}
+    employees.forEach(function(e)
+    {
+      if(!Object.keys(davgsal).includes(e.department))
+      {
+        i=0
+        davgsal[e.department]=(employees.reduce(function(tsal,emp){
+          if(emp.department==e.department)
+          {
+            i++
+            return tsal+emp.salary            
+          }
+          else
+            return tsal
+        },0)/i).toFixed(2)        
+      }
+    })    
+    return davgsal  
+   }
+  document.write(`Department & their average salaries:${JSON.stringify(depAvgSal())}`)
+</script>
+</body>
+</html>  

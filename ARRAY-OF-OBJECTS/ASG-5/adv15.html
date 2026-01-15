@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const employees = [
+  {id:1,name:"John Doe",department:"Engineering",salary:55000,status:"active"},
+  {id:2,name:"Jane Smith",department:"Marketing",salary:60000,status:"inactive"},
+  {id:3,name:"Michael Johnson",department:"Engineering",salary:75000,status:"active"},
+  {id:4,name:"Emily Davis",department:"Human Resources",salary:48000,status:"active"},
+  {id:5,name:"Chris Lee",department:"Marketing",salary:53000,status:"inactive"},
+  {id:6,name:"Sarah Brown",department:"Engineering",salary:62000,status:"active"},
+  {id:7,name:"David Wilson",department:"Human Resources",salary:47000,status:"active"},
+  {id:8,name:"Anna White",department:"Marketing",salary:59000,status:"inactive"}
+  ];
+  document.write("<b>Updating list of the employees with new salaries:<br>Before:<br></b>",JSON.stringify(employees),"<b><br><br>After:<br></b>",JSON.stringify(promoteEmp()))
+  
+  function promoteEmp()
+  {
+    employees.forEach(function(e)
+    {
+      if(e.salary>60000)
+        e.salary+=10000
+    })    
+    return employees
+   }
+</script>
+</body>
+</html>  

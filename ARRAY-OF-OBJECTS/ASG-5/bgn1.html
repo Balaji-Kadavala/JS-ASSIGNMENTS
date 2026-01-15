@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"JS Programs"</title>
+</head>
+<body>
+<script>
+  const employees = [
+  {id:1,name:"John Doe",department:"Engineering",salary:55000,status:"active"},
+  {id:2,name:"Jane Smith",department:"Marketing",salary:60000,status:"inactive"},
+  {id:3,name:"Michael Johnson",department:"Engineering",salary:75000,status:"active"},
+  {id:4,name:"Emily Davis",department:"Human Resources",salary:48000,status:"active"},
+  {id:5,name:"Chris Lee",department:"Marketing",salary:53000,status:"inactive"},
+  {id:6,name:"Sarah Brown",department:"Engineering",salary:62000,status:"active"},
+  {id:7,name:"David Wilson",department:"Human Resources",salary:47000,status:"active"},
+  {id:8,name:"Anna White",department:"Marketing",salary:59000,status:"inactive"}
+  ];
+  var id=+prompt("Enter the id:")
+  var dt=empNameDept(id)
+  document.write(`${JSON.stringify(dt)}`)
+  function empNameDept(id)
+  {
+    var e=employees.find((e) => e.id==id?true:false)
+    return e?{"name":e.name,"department":e.department}:"Employee not found!"
+  }
+</script>
+</body>
+</html> 
