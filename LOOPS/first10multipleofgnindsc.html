@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,i=1,cnt=0;
+    n=+prompt("Enter a number:")
+    document.write(`First 10 multiples of ${n} in descending order:`)
+    while(cnt<10){
+      if(i%n==0)
+        cnt++        
+      i++
+    }
+    for(i--;i>0;i--)
+      if(!(i%n))
+        document.write(i+" ")
+  </script>
+</body>
+</html>

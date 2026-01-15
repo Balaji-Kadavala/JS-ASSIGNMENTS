@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,i;
+    n=+prompt("Enter a number:")
+    document.write(`Even numbers divisible by 3 upto ${n} in dsc order:`)
+    for(i=1;i<=n;i++)
+      if(i%2 && !(i%3))
+        document.write(i+" ")
+  </script>
+</body>
+</html>

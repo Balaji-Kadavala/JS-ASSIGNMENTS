@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var i=1,n;
+    n=+prompt("Enter a number:")
+    document.write(`Factors of ${n}:`)
+    while(i<=n){
+      if(!(n%i))
+        document.write(i,(i<n)?",":".") 
+      i++
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,cnt,p,dig,n1;
+    n=parseInt(prompt("Enter a number:"))
+    document.write(`Digits in ${n}:`)
+    n1=n
+    cnt=0
+    /*while(n>0){
+      document.write(n%10+"<br>")  //This prints the digits in reverse order
+      n=parseInt(n/10)
+    }*/  
+    while(n1>0){
+      cnt++
+      n1=parseInt(n1/10)
+    }
+    for(var i=cnt-1;i>=0;i--){
+      p=10**i
+      dig=parseInt((n%(p*10))/p)
+      document.write(dig,i>0?",":".")    //This prints the digits in it's original order
+    }
+  </script>
+</body>
+</html>

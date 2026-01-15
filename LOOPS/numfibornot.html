@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <script>
+    var n,n1,n2,n3;
+    [n1,n2,n3]=[0,1,2]
+    n=+prompt("Enter a number:")
+    if(n!=n1 && n!=n2){
+      while(n3<=n){
+        if(n3==n)
+          break
+        n1=n2;
+        n2=n3;
+        n3=n1+n2
+      }
+    }
+    document.write(n1==n||n2==n||n3==n?"It's a fibonacci number!":"Not a fibonacci number!")        
+  </script>
+</body>
+</html>
