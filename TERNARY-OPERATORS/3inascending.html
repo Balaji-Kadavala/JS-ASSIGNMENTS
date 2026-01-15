@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>3 in Asc</title>
+</head>
+<body>
+  <script>
+    var a=+prompt("Enter first number:")
+    var b=+prompt("Enter second number:") 
+    var c=+prompt("Enter third number:")
+    document.write("Ascending order:")
+    document.write(b<=a && c<=b?c+","+b+","+a:a<b && c<=a?c+","+a+","+b:c<=a && b<c?b+","+c+","+a:c<=b && a<c?a+","+c+","+b:a<c && b<=a?b+","+a+","+c:a+","+b+","+c)
+  </script>
+</body>
+</html>

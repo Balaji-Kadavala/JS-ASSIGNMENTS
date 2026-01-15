@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>3 in Asc</title>
+</head>
+<body>
+  <script>
+    //var dd,mm,yy; if decl come intiz -> var [dd,mm,yy]=prom..
+    //dd,mm,yy=prompt("Enter date:").split('/').map(Number)
+    var dd=+prompt("Enter day:")
+    var mm=+prompt("Enter month:") 
+    var yy=+prompt("Enter year:")
+    alert(((dd>=1 && dd<=31) && (mm>=1 && mm<=12) && (yy>=1900 && yy<=9999))?"Valid date!":"Invalid date!")
+    document.write("Date validated!")
+  </script>
+</body>
+</html>
