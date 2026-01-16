@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #ecom {
+            display: flex;
+        }
+
+        #cart {
+            border: 1px solid;
+            width: 40%;     
+            padding:1px
+        }
+
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 60%;
+        }    
+
+        #products div img {
+            width: 100%;
+        }
+    
+       .incdecbtns{
+    height:25px;
+    width:25px;
+    text-align:center;       
+    border-radius:50%;
+    background-color:black;
+    font-weight:bold;    
+    font-size:20px;           
+    color:white;
+  }        
+    
+    .addtocartbtn{
+        height:30px;
+        width:120px;
+        border-radius:5px;
+        background-color:green;
+        color:white;            
+    }
+    
+    .prevnextbtns{
+        height:25px;
+        width:80px;
+        border-radius:5px;
+        margin-right:100px;
+        background-color:skyblue;
+        color:white;
+    }
+    #cartTable{
+        margin:5px;
+        width:100%
+    }
+    .tableRow{
+        text-align:center;
+    }
+    .tableRowBg{
+        background-color:rgba(0,0,0,0.08);
+        text-align:center;
+    }
+    </style>
+</head>
+
+<body>
+    <h1 id="d2"></h1>
+    <h3>Point Of Sale</h3>
+    <div id="ecom">
+
+        <div id="products">
+        </div>
+        <div id="cart">
+            <h3>Cart - (Total - <span id="cartCount">0</span> / Types - <span id="cartPrdctTypes">0</span>)</h3>
+            <table id="cartTable" cellspacing="0px">
+                <thead>
+                <th>Title</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                </thead>
+                <tbody id="tb">
+                    
+                </tbody>
+            </table> 
+          <h3 align="right">Total:$<span id="ttlPrice">0</span></h3>
+        </div>
+    </div>
+    <button onclick="prevSet()" class="prevnextbtns">Prev</button> 
+    <button onclick="nextSet()" class="prevnextbtns">Next</button>  
+    <script>
+        var s = 100;   
+        var cartCount=0;    
+        var cartPrdctTypes=0;
+        var cartItems = [];
+        var ttlCartPrice=0
+        var products = [];
+
+        function genTable() {
+            document.getElementById('products').innerHTML=""
+            products.forEach(function(product) {
+                var productCard = document.createElement("div")
+                productCard.style.cssText="width:150px;text-align: center;box-shadow: 1px 1px 3px 1px;border-radius: 10px;margin: 5px;padding: 5px;"
+                var productImg = document.createElement("img")
+                productImg.src = product.thumbnail
+                productCard.appendChild(productImg)
+                var productTitle = document.createElement("h4")
+                productTitle.innerText = product.title+" $"+product.price                
+                productCard.appendChild(productTitle)
+                if(!(cartItems.map(item => item.id).includes(product.id)))
+                {
+                  var addToCartBtn = document.createElement("button")
+                  addToCartBtn.innerText = 'Add To Cart'
+                  addToCartBtn.className = "addtocartbtn"
+                  addToCartBtn.onclick = function () { addToCart(product) }
+                  productCard.appendChild(addToCartBtn)
+                }
+                else
+                {
+                    var incbtn=document.createElement("button")
+                    incbtn.innerText="+"
+                    incbtn.className="incdecbtns"
+                    incbtn.addEventListener("click",function(){
+                        incPrdctCount(product.id)
+                    })
+                    var cartPrdtCnt=document.createElement("b")
+                    cartPrdtCnt.innerHTML=cartProductCount(product.id)
+                    cartPrdtCnt.style.cssText="margin-left:5px;margin-right:5px"
+                    var decbtn=document.createElement("button")
+                    decbtn.innerText="-"
+                    decbtn.className="incdecbtns" 
+                    decbtn.addEventListener("click",function(){
+                        decPrdctCount(product.id)
+                    })
+                    productCard.appendChild(decbtn)
+                    productCard.appendChild(cartPrdtCnt)
+                    productCard.appendChild(incbtn)
+                }
+                document.getElementById('products').appendChild(productCard)
+            })
+        }
+        function addToCart(item) {            
+            ttlCartPrice+=item.price
+            cartCount++        
+            cartPrdctTypes++
+            document.getElementById("cartCount").innerText=cartCount
+            document.getElementById("cartPrdctTypes").innerText=cartPrdctTypes
+            cartItems.push({...item,prdctCount:1})
+            genCart();                        
+            genTable()
+        }
+
+        function genCart() {            
+            document.getElementById('tb').innerHTML=""
+            cartItems.forEach(function(product,i) {
+                var tr=document.createElement("tr") 
+                if(i%2==0)                
+                  tr.className="tableRowBg" 
+                else
+                  tr.className="tableRow"
+                var tdt = document.createElement("td")
+                tdt.style.cssText="width:140px"
+                tdt.innerText=product.title
+                var tdq = document.createElement("td")                   
+                var incbtn=document.createElement("button")
+                    incbtn.innerText="+"
+                    incbtn.className="incdecbtns"
+                    incbtn.addEventListener("click",function(){
+                        incPrdctCount(product.id)
+                    })
+                    var cartPrdtCnt=document.createElement("b")
+                    cartPrdtCnt.innerHTML=product.prdctCount
+                    cartPrdtCnt.style.cssText="margin-left:5px;margin-right:5px"
+                    var decbtn=document.createElement("button")
+                    decbtn.innerText="-"
+                    decbtn.className="incdecbtns" 
+                    decbtn.addEventListener("click",function(){
+                        decPrdctCount(product.id)
+                    })
+                    tdq.appendChild(decbtn)
+                    tdq.appendChild(cartPrdtCnt)
+                    tdq.appendChild(incbtn)                
+                var tdp = document.createElement("td")
+                tdp.innerText = product.price                
+                var tdttl = document.createElement("td")
+                tdttl.innerText = product.price * product.prdctCount                
+                tr.appendChild(tdt)
+                tr.appendChild(tdq)
+                tr.appendChild(tdp)
+                tr.appendChild(tdttl)                
+                document.getElementById('tb').appendChild(tr)
+            })
+            document.getElementById("ttlPrice").innerText=ttlCartPrice
+        }
+        function getProducts() {
+            fetch("https://dummyjson.com/product?limit=30&skip="+s)
+            .then(function(res){return res.json()})    
+            .then(function (data) { 
+                products=data.products;                
+                genTable();
+            })            
+        }
+    
+        function prevSet() {
+            if(s-30>=0)
+            {
+              s = s - 30;
+              getProducts();
+            }
+        }
+        function nextSet() {
+            s = s + 30;
+            getProducts();
+        }
+
+    function incPrdctCount(id)
+    {        
+        cartItems.forEach(function(product,i){
+            if(product.id==id)
+            {
+              cartItems[i].prdctCount++
+              ttlCartPrice+=product.price  
+              cartCount++  
+              document.getElementById("cartCount").innerText=cartCount
+            }
+        })        
+        genCart()        
+        genTable()
+    }
+    
+    function decPrdctCount(id)
+    {                
+        cartItems.find(function(product,i){
+            if(product.id==id)
+              {  
+                 if(cartItems[i].prdctCount!=0)
+                  {
+                   cartItems[i].prdctCount--
+                   ttlCartPrice-=product.price 
+                   cartCount--  
+                   document.getElementById("cartCount").innerText=cartCount
+                   genCart()                      
+                   genTable()     
+                  }
+                  return true
+              }
+        })                
+    }
+    
+    function cartProductCount(id)
+    {
+        var prdct=cartItems.find(function(product){
+            if(product.id==id)
+              return true
+            else
+              return false
+        })
+        return prdct.prdctCount
+    } 
+        getProducts()
+    </script>
+</body>
+
+</html>
