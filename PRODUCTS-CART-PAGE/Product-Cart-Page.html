@@ -110,6 +110,7 @@
             document.getElementById('products').innerHTML=""
             products.forEach(function(product) {
                 var productCard = document.createElement("div")
+                productCard.id="pCard-"+product.id
                 productCard.style.cssText="width:150px;text-align: center;box-shadow: 1px 1px 3px 1px;border-radius: 10px;margin: 5px;padding: 5px;"
                 var productImg = document.createElement("img")
                 productImg.src = product.thumbnail
@@ -117,35 +118,13 @@
                 var productTitle = document.createElement("h4")
                 productTitle.innerText = product.title+" $"+product.price                
                 productCard.appendChild(productTitle)
-                if(!(cartItems.map(item => item.id).includes(product.id)))
-                {
+                var ctrls=document.createElement("div")                  
                   var addToCartBtn = document.createElement("button")
                   addToCartBtn.innerText = 'Add To Cart'
                   addToCartBtn.className = "addtocartbtn"
                   addToCartBtn.onclick = function () { addToCart(product) }
-                  productCard.appendChild(addToCartBtn)
-                }
-                else
-                {
-                    var incbtn=document.createElement("button")
-                    incbtn.innerText="+"
-                    incbtn.className="incdecbtns"
-                    incbtn.addEventListener("click",function(){
-                        incPrdctCount(product.id)
-                    })
-                    var cartPrdtCnt=document.createElement("b")
-                    cartPrdtCnt.innerHTML=cartProductCount(product.id)
-                    cartPrdtCnt.style.cssText="margin-left:5px;margin-right:5px"
-                    var decbtn=document.createElement("button")
-                    decbtn.innerText="-"
-                    decbtn.className="incdecbtns" 
-                    decbtn.addEventListener("click",function(){
-                        decPrdctCount(product.id)
-                    })
-                    productCard.appendChild(decbtn)
-                    productCard.appendChild(cartPrdtCnt)
-                    productCard.appendChild(incbtn)
-                }
+                  ctrls.appendChild(addToCartBtn)  
+                  productCard.appendChild(ctrls)                                
                 document.getElementById('products').appendChild(productCard)
             })
         }
@@ -157,7 +136,7 @@
             document.getElementById("cartPrdctTypes").innerText=cartPrdctTypes
             cartItems.push({...item,prdctCount:1})
             genCart();                        
-            genTable()
+            updateProductUI(item.id)
         }
 
         function genCart() {            
@@ -235,7 +214,7 @@
             }
         })        
         genCart()        
-        genTable()
+        updateProductUI(id) 
     }
     
     function decPrdctCount(id)
@@ -250,7 +229,7 @@
                    cartCount--  
                    document.getElementById("cartCount").innerText=cartCount
                    genCart()                      
-                   genTable()     
+                   updateProductUI(id)     
                   }
                   return true
               }
@@ -267,6 +246,31 @@
         })
         return prdct.prdctCount
     } 
+    
+    function updateProductUI(pid)
+    {
+        var pdiv=document.getElementById("pCard-"+pid)
+        var ctrlsdiv=pdiv.querySelector("div")
+        ctrlsdiv.innerHTML=""
+        var incbtn=document.createElement("button")
+                    incbtn.innerText="+"
+                    incbtn.className="incdecbtns"
+                    incbtn.addEventListener("click",function(){
+                        incPrdctCount(pid)
+                    })
+                    var cartPrdtCnt=document.createElement("b")
+                    cartPrdtCnt.innerHTML=cartProductCount(pid)
+                    cartPrdtCnt.style.cssText="margin-left:5px;margin-right:5px"
+                    var decbtn=document.createElement("button")
+                    decbtn.innerText="-"
+                    decbtn.className="incdecbtns" 
+                    decbtn.addEventListener("click",function(){
+                        decPrdctCount(pid)
+                    })
+                    ctrlsdiv.appendChild(decbtn)
+                    ctrlsdiv.appendChild(cartPrdtCnt)
+                    ctrlsdiv.appendChild(incbtn)         
+    }
         getProducts()
     </script>
 </body>
