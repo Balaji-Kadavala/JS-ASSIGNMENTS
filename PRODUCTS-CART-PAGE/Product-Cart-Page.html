@@ -19,7 +19,7 @@
             border: 1px solid;
             width: 40%;     
             padding:1px
-        }
+        }    
 
         #products {
             display: flex;
@@ -172,14 +172,14 @@
                 var tdp = document.createElement("td")
                 tdp.innerText = product.price                
                 var tdttl = document.createElement("td")
-                tdttl.innerText = product.price * product.prdctCount                
+                tdttl.innerText = (product.price * product.prdctCount).toFixed(2)                
                 tr.appendChild(tdt)
                 tr.appendChild(tdq)
                 tr.appendChild(tdp)
                 tr.appendChild(tdttl)                
                 document.getElementById('tb').appendChild(tr)
             })
-            document.getElementById("ttlPrice").innerText=ttlCartPrice
+            document.getElementById("ttlPrice").innerText=ttlCartPrice.toFixed(2)
         }
         function getProducts() {
             fetch("https://dummyjson.com/product?limit=30&skip="+s)
