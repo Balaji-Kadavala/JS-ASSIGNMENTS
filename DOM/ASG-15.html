@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  #ballScore{
+    display:flex;
+    flex-wrap:wrap;
+    margin-top:20px;    
+  }
+  </style>
+</head>
+<body>
+  <h1 style="font-size:45px;">
+    Score:<span id="score">0</span>-<span id="wickets">0</span>
+  </h1>
+  <div id="scoreBtns"></div>
+  <div id="ballScore"></div>
+  <script>
+  var score=0
+  var wkts=0
+  var scoreVars=[0,1,2,3,4,6,"wide","wicket"]  
+  scoreVars.forEach(function(sv){        
+    var btn=document.createElement("button")
+    btn.innerText=sv
+    btn.style.cssText="padding:10px;margin-left:5px"
+    btn.addEventListener("click",function(){showScore(sv)})
+    document.getElementById("scoreBtns").appendChild(btn)    
+  })  
+    function showScore(s)
+    {
+      var ball;
+      if(s=="wide")
+      {
+        score+=1
+        document.getElementById("score").innerText=score
+        ball=document.createElement("div")
+        ball.innerText=s        
+      }
+      else if(s=="wicket")
+      {
+        wkts+=1
+        document.getElementById("wickets").innerText=wkts
+        ball=document.createElement("div")
+        ball.innerText=s   
+      }
+      else
+      {
+        if(s!=0)
+          score+=s
+        document.getElementById("score").innerText=score
+        ball=document.createElement("div")
+        ball.innerText=s
+      }      
+      styleColor(ball,s)
+      document.getElementById("ballScore").appendChild(ball)      
+    }
+
+    function styleColor(ball,s)
+    {
+      var color
+      if(s==0)
+        color="lightgray"
+      else if(s==1)
+        color="lightblue"
+      else if(s==2)
+        color="dodgerblue"
+      else if(s==3)
+        color="royalblue"
+      else if(s==4)
+        color="green"      
+      else if(s==6)
+        color="limegreen"
+      else if(s=="wide")
+        color="khaki"
+      else if(s=="wicket")
+        color="red"
+      ball.style.cssText="border:1px solid;border-radius:50%;padding:10px;margin:1px;background-color:"+color
+    }
+    </script>    
+</body>
+</html>
