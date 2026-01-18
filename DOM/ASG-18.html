@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  #captcha{
+    font-size:40px;
+    color:green
+  }
+  #ip{
+    height:25px;
+    width:200px;
+  }
+  #submit{
+    height:30px;
+    width:100px;
+  }
+  #reload{
+    border:none;
+    font-size:20px;
+    background-color:white;
+  }
+  </style>
+</head>
+<body>
+  <h1 id="captcha"></h1>
+  <input type="text" id="ip" placeholder="Enter captcha!" onkeyup="checkEmpty(event)">
+  <button id="submit" onclick="verifyCaptcha()" disabled>Submit</button>
+  <button id="reload" onclick="genCaptcha()">🔄</button>
+  <script>
+  var captcha
+  function genCaptcha()
+  {
+    captcha=String.fromCharCode((Math.random()*(90-65))+65)+parseInt(Math.random()*10)+String.fromCharCode((Math.random()*(122-97))+97)+String.fromCharCode((Math.random()*(90-65))+65)+parseInt(Math.random()*10)+String.fromCharCode((Math.random()*(122-97))+97)
+    document.getElementById("captcha").innerText=captcha    
+  }
+  function verifyCaptcha()
+  {
+    var ip=document.getElementById("ip").value
+    if(ip==captcha)
+      alert("Correct Captcha!")
+    else
+      alert("Incorrect Captcha!!!")
+  }
+  function checkEmpty(ev)
+  {
+    if(ev.target.value=="")
+      document.getElementById("submit").disabled=true
+    else
+      document.getElementById("submit").disabled=false
+  }
+  genCaptcha()
+  </script>
+</body>
+</html>

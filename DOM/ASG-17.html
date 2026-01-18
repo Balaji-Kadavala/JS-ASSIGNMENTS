@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  .strikeit{
+    text-decoration:line-through;      
+  }  
+  #ul{
+    list-style:none;
+    margin-left:0;
+    padding-left:0;
+  }
+  input{
+    height:25px;
+    width:200px;
+  }
+  #addTaskBtn{
+    height:30px;
+    width:100px;
+  }
+  #ul li button{
+    height:25px;
+    width:50px;        
+  }
+  #ul li{    
+    margin-bottom:5px;
+    font-size:20px;
+  }
+  </style>
+</head>
+<body>
+  <input type="text" id="ip" placeholder="Enter task!" onkeyup="checkEmpty(event)">
+  <button id="addTaskBtn" onclick="addTask()" disabled>Add Task</button>
+  <ul id="ul">
+    
+  </ul>
+  <script>
+  var tasks=[{"Task":"Jogging","status":"Done"},{"Task":"Meditation","status":"Done"},{"Task":"Read story","status":"Done"}]
+  function addTask()
+  {
+    var tsk=document.getElementById("ip").value    
+    tasks.push({"Task":tsk,"status":"Done"})
+    document.getElementById("ip").value=""
+    document.getElementById("addTaskBtn").disabled=true
+    displayTasks()
+  }
+  function displayTasks()
+  {
+    var ul=document.getElementById("ul")
+    ul.innerHTML=""
+    tasks.forEach(function(task,i){
+      var nli=document.createElement("li")
+      nli.innerText=task.Task
+      var taskSts=document.createElement("button")
+      taskSts.innerText=task.status
+      taskSts.style.cssText="margin-left:10px"
+      taskSts.addEventListener("click",function(){
+        strikeTask(nli,i)       
+      })        
+      var delBtn=document.createElement("button")
+      delBtn.innerText="Delete"      
+      delBtn.addEventListener("click",function(){
+        deleteTask(i)       
+      })        
+      if(task.status=="Undo")      
+        nli.classList.add("strikeit")        
+      else
+        delBtn.disabled=true
+      nli.appendChild(taskSts)
+      nli.appendChild(delBtn)
+      ul.appendChild(nli)      
+    })
+  }
+  
+  function strikeTask(li,i)
+  {
+    var btn=li.querySelectorAll("button")
+    if(btn[0].innerText=="Done")
+    {
+      btn[0].innerText=tasks[i].status="Undo"      
+      btn[1].disabled=false
+    }
+    else
+    {
+      btn[0].innerText=tasks[i].status="Done"      
+      btn[1].disabled=true
+    }
+    li.classList.toggle("strikeit")
+  }
+  
+  function deleteTask(i)
+  {
+    tasks.splice(i,1)
+    displayTasks()
+  }
+  
+  function checkEmpty(ev)
+  {
+    if(ev.target.value=="")
+      document.getElementById("addTaskBtn").disabled=true
+    else
+      document.getElementById("addTaskBtn").disabled=false
+  }
+  displayTasks()
+  </script>
+</body>
+</html>

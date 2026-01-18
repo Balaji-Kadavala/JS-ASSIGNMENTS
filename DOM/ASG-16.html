@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  .fadeitout{
+    opacity:0.3;
+  }
+  </style>
+</head>
+<body>
+  <h1>Occupied:<span id="occupied">0</span></h1>
+  <h1>Available:<span id="available">6</span></h1>
+  <div id="seats"></div>
+  <script>
+  var occupied=0
+  var available=6  
+  var seats=document.getElementById("seats")
+  for(i=0;i<6;i++)
+  {  
+    let seatimg=document.createElement("img")
+    let obj={"status":true}
+    seatimg.src="pexels-paula-schmidt-353488-963486.jpg"
+    seatimg.addEventListener("click",function(){
+      toggle(seatimg,obj)
+    })
+    seatimg.style.cssText="height:90px;width:90px"
+    seats.appendChild(seatimg)
+  }
+    
+  function toggle(seat,obj)
+  {
+    var ocp=document.getElementById("occupied")
+    var avl=document.getElementById("available")
+    seat.classList.toggle("fadeitout")
+    if(obj.status)
+    {
+      occupied++
+      available--     
+      obj.status=false
+    }
+    else
+    {
+      occupied--
+      available++     
+      obj.status=true
+    }    
+    ocp.innerHTML=occupied
+    avl.innerHTML=available
+  }
+  </script>
+</body>
+</html>
