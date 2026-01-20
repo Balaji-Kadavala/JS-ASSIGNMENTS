@@ -31,7 +31,7 @@
         #products div img {
             width: 100%;
         }
-    
+  
        .incdecbtns{
     height:25px;
     width:25px;
@@ -81,7 +81,7 @@
         <div id="products">
         </div>
         <div id="cart">
-            <h3>Cart - (Total - <span id="cartCount">0</span> / Types - <span id="cartPrdctTypes">0</span>)</h3>
+            <h3>Cart - (Qnty - <span id="cartCount">0</span> / Types - <span id="cartPrdctTypes">0</span>)</h3>
             <table id="cartTable" cellspacing="0px">
                 <thead>
                 <th>Title</th>
@@ -119,11 +119,7 @@
                 productTitle.innerText = product.title+" $"+product.price                
                 productCard.appendChild(productTitle)
                 var ctrls=document.createElement("div")                  
-                  var addToCartBtn = document.createElement("button")
-                  addToCartBtn.innerText = 'Add To Cart'
-                  addToCartBtn.className = "addtocartbtn"
-                  addToCartBtn.onclick = function () { addToCart(product) }
-                  ctrls.appendChild(addToCartBtn)  
+                  genAddToCartBtn(ctrls,product)
                   productCard.appendChild(ctrls)                                
                 document.getElementById('products').appendChild(productCard)
             })
@@ -222,18 +218,30 @@
         cartItems.find(function(product,i){
             if(product.id==id)
               {  
-                 if(cartItems[i].prdctCount!=0)
+                 if(cartItems[i].prdctCount!=1)
                   {
                    cartItems[i].prdctCount--
                    ttlCartPrice-=product.price 
                    cartCount--  
-                   document.getElementById("cartCount").innerText=cartCount
-                   genCart()                      
+                   document.getElementById("cartCount").innerText=cartCount                    
                    updateProductUI(id)     
                   }
+                  else
+                  {
+                    var pdiv=document.getElementById("pCard-"+id)
+                    ctrlsdiv=pdiv.querySelector("div")
+                    cartItems.splice(i,1)
+                    cartPrdctTypes--
+                    ttlCartPrice-=product.price 
+                    cartCount--  
+                    document.getElementById("cartCount").innerText=cartCount                     
+                    document.getElementById("cartPrdctTypes").innerText=cartPrdctTypes
+                    genAddToCartBtn(ctrlsdiv,product)
+                  }                  
                   return true
               }
-        })                
+        })         
+      genCart() 
     }
     
     function cartProductCount(id)
@@ -246,6 +254,16 @@
         })
         return prdct.prdctCount
     } 
+    
+    function genAddToCartBtn(ctrls,product)
+    {
+        ctrls.innerHTML=""
+        var addToCartBtn = document.createElement("button")
+        addToCartBtn.innerText = 'Add To Cart'
+        addToCartBtn.className = "addtocartbtn"
+        addToCartBtn.onclick = function () { addToCart(product) }
+        ctrls.appendChild(addToCartBtn)  
+    }
     
     function updateProductUI(pid)
     {
