@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU+Guides&family=Roboto:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">  <style>
+  #score{
+    font-family:"Roboto","sans-serif";
+  }
+  #score-line{
+    font-family:"Times New Roman";
+  }
+  #sl-text ~ span{
+      font-family:"SN Pro","sans-serif";  
+  }
+  </style>
+</head>
+<body>
+  <h1 id="score">
+    Score:<span id="runs">0</span>/<span id="wickets">0</span>
+  </h1>
+  <h3 id="score-line"><span id="sl-text">Score Line:</span></h3>
+  <button id="dot" onclick="countScore(event)">DOT</button>
+  <button id="one" onclick="countScore(event)">1</button>
+  <button id="two" onclick="countScore(event)">2</button>
+  <button id="three" onclick="countScore(event)">3</button>
+  <button id="four" onclick="countScore(event)">4</button>
+  <button id="five" onclick="countScore(event)">5</button>
+  <button id="six" onclick="countScore(event)">6</button>
+  <button id="wkt" onclick="countScore(event)">W</button>
+  <button id="wd" onclick="countScore(event)">Wide</button>
+  <button id="nob" onclick="countScore(event)">No Ball</button>
+  <script>
+  var totalScore=0,wkts=0,overC=0;
+  var btnid;
+  function countScore(ev){
+    var run=0;
+    btnid=ev.target.id;
+    if(btnid!="wkt" && btnid!="dot")
+    {
+      run=btnid=="two"?2:btnid=="three"?3:btnid=="four"?4:btnid=="five"?5:btnid=="six"?6:1;
+      totalScore+=run;
+    }
+    else if(btnid=="wkt")
+      wkts++;    
+    if(btnid!="wd" && btnid!="nob")
+      overC++;
+    console.log(event.target.innerText)
+    updateScore(run);
+  }
+  
+  function updateScore(run)
+  {
+    const runs=document.getElementById("runs");
+    const scoreLine=document.getElementById("score-line");
+    var scoreTxt;
+    if(btnid=="wkt")
+    {
+      scoreTxt="W";
+      document.getElementById("wickets").innerText=wkts;
+    }
+    else if(btnid=="dot")
+      scoreTxt=".";
+    else if(btnid=="wd")
+      scoreTxt="1wd";
+    else if(btnid=="nob")
+      scoreTxt="1nb";
+    else
+    {
+      scoreTxt=run;
+    }
+    runs.innerText=totalScore;
+    if(overC%6==0 && btnid!="wd" && btnid!="nob")
+      scoreTxt+=" |";
+    var span=document.createElement("span");
+    span.innerText=" "+scoreTxt;
+    scoreLine.appendChild(span);
+  }
+  </script>
+</body>
+</html>
