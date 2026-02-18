@@ -20,7 +20,7 @@
 </head>
 <body>
   <h1 id="score">
-    Score:<span id="runs">0</span>/<span id="wickets">0</span>
+    Score:<span id="runs">0</span>/<span id="wickets">0</span> || Overs:<span id="overs">0</span>
   </h1>
   <h3 id="score-line"><span id="sl-text">Score Line:</span></h3>
   <button id="dot" onclick="countScore(event)">DOT</button>
@@ -37,6 +37,12 @@
   var totalScore=0,wkts=0,overC=0;
   var btnid;
   function countScore(ev){
+    if(wkts==10)
+    {
+      if(confirm("Game Over!\nRestart The Game!.."))
+        location.reload();
+      return
+    }
     var run=0;
     btnid=ev.target.id;
     if(btnid!="wkt" && btnid!="dot")
@@ -48,7 +54,6 @@
       wkts++;    
     if(btnid!="wd" && btnid!="nob")
       overC++;
-    console.log(event.target.innerText)
     updateScore(run);
   }
   
@@ -74,10 +79,15 @@
     }
     runs.innerText=totalScore;
     if(overC%6==0 && btnid!="wd" && btnid!="nob")
+    {
       scoreTxt+=" |";
+      document.getElementById("overs").innerText=overC/6
+    }
     var span=document.createElement("span");
     span.innerText=" "+scoreTxt;
     scoreLine.appendChild(span);
+    if(wkts==10)
+      setTimeout(()=>alert("Game Over!\nReview the score..."),0);
   }
   </script>
 </body>
