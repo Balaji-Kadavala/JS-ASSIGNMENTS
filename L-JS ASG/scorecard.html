@@ -263,9 +263,8 @@
     var span=document.createElement("span");
     span.innerText=scoreTxt;
     span.style.cssText="background-color:"+ballBGcolor;
-    overDiv.appendChild(span);
-    if(btnid!="wd" && btnid!="nob")
-      document.getElementById("ov-balls").innerText=overBalls;
+    overDiv.appendChild(span);    
+    document.getElementById("ov-balls").innerText=overBalls;
     if(wkts==10)
       setTimeout(()=>alert("Game Over!\nReview the score..."),0);
     if(overBalls==6)
