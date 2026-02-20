@@ -276,3 +276,296 @@
   </script>
 </body>
 </html>
+
+
+<!--After Batsmen implementation-->
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU+Guides&family=Roboto:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">  
+  <style>
+  *{
+    margin:0px;
+  }
+  body{
+    padding-bottom:150px;
+  }
+  #score{
+    font-family:"Roboto","sans-serif";
+    font-size:2.1em;
+    background-color:grey;
+    min-height:60px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+  }
+  #sl-text{
+    font-family:"Times New Roman";
+    margin:5px 20%;
+    border:1px solid;
+    text-align:center;
+  }
+  #score-line{
+    border-radius:2px;
+    box-shadow:2px 2px 5px 1px grey;
+    padding:3px 0px 3px 0px;
+  }
+  #score-line>div{
+    display:flex;
+    flex-wrap:wrap;
+    margin:0px 2px 8px 2px;
+    border-radius:2px;
+    box-shadow:2px 2px 5px 1px grey;
+  }
+  #score-line div span{
+    font-family:"SN Pro","sans-serif";  
+    border:1px solid;
+    width:40px;
+    height:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    margin:2px;
+  } 
+  #buttons{
+    margin:30px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    border:1px solid;
+    border-radius:5px;
+    position:fixed;
+    bottom:0%;
+    right:2%;
+    left:2%;
+    background-color:rgb(0,0,0,0.3);
+  }
+  #buttons button{
+    padding:10px;
+    margin:5px 5px;
+  }
+  .over-num{
+    height:40px;
+    width:100%;
+    background-color:black;
+    color:white;
+    margin:2px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  #BTMS{
+    display:flex;
+    flex-direction:column;
+    border-radius:2px;
+    box-shadow:2px 2px 5px 1px grey;
+    margin:20px 0px;
+  }
+  #BTMS h3{
+    height:1.5em;
+    text-align:center;
+  }
+  #BTMS h2{
+    text-align:center;
+    background-color:Wheat;
+  }
+  .highlight{
+    background-color:yellow;
+  }
+  #DP-div{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:20px;
+    border-radius:2px;
+    box-shadow:2px 2px 5px 1px grey;
+  }
+  #DPlayers-list{
+    list-style:"🏏 ";
+    font-size:1.2em;
+    padding:4px;
+  }
+  </style>
+</head>
+<body>
+  <h1 id="score">
+    Score:<span id="runs">0</span>/<span id="wickets">0</span>&nbsp||&nbsp<span>Overs:<span id="overs">0</span>.<span id="ov-balls">0</span></span>
+  </h1>
+  <div id="BTMS">
+    <h2>The Set Batters</h2>
+    <h3 id="BTM-1"><span id="BTM-1-NM">Sachin Tendulkar</span> - <span id="BTM-1-SC">0</span></h3>
+    <h3 id="BTM-2"><span id="BTM-2-NM">M.S.Dhoni</span> - <span id="BTM-2-SC">0</span></h3>
+  </div>
+  <h1 id="sl-text">Score Line</h1>
+  <div id="score-line"></div>
+  <div id="buttons">
+  <button id="dot" onclick="countScore(event)">DOT</button>
+  <button id="one" onclick="countScore(event)">1</button>
+  <button id="two" onclick="countScore(event)">2</button>
+  <button id="three" onclick="countScore(event)">3</button>
+  <button id="four" onclick="countScore(event)">4</button>
+  <button id="five" onclick="countScore(event)">5</button>
+  <button id="six" onclick="countScore(event)">6</button>
+  <button id="wkt" onclick="countScore(event)">W</button>
+  <button id="wd" onclick="countScore(event)">Wide</button>
+  <button id="nob" onclick="countScore(event)">No Ball</button>
+  </div>  
+  <div id="DP-div">
+    <h2>Dismissed Players</h2>
+    <ul id="DPlayers-list">
+    </ul>
+  </div>
+  <script>
+  var totalScore=0,wkts=0,overC=0;
+  var btnid,overDiv,overBalls=0,otBalls=0;
+  var p1Score=0,p1Balls=0,p2Score=0,p2Balls=0,btmSts=0,btmCnt=1,dsmPlyBalls;
+  var batsmen=["Sachin Tendulkar","MS Dhoni","Virat Kohli","Rahul Dravid","Virender Sehwag","Rohit Sharma","Sourav Ganguly","VVS Laxman","Yuvraj Singh","Sunil Gavaskar","Gundappa Viswanath"]
+  const cssColors = ["Aqua", "Aquamarine", "Beige", "Bisque","BurlyWood", "Cornsilk", "Gold","Khaki", "Lavender", "LightBlue","LightGreen", "LightPink", "LightSalmon","LightSkyBlue", "LightSteelBlue","Moccasin", "NavajoWhite","PaleGreen", "PaleTurquoise","PeachPuff", "PowderBlue","Thistle", "Wheat","Yellow"];
+  var totalOvers=+prompt("Enter no. of overs of the match:")
+  document.getElementById("BTM-1").classList.add("highlight");
+  function countScore(ev){
+    if(wkts==10 || (overC==totalOvers && overBalls==0))
+    {
+      if(confirm("Game Over!\nRestart The Game!.."))
+        location.reload();
+      return
+    }
+    var run=0;
+    btnid=ev.target.id;
+    if(btnid!="wkt" && btnid!="dot")
+    {
+      run=btnid=="two"?2:btnid=="three"?3:btnid=="four"?4:btnid=="five"?5:btnid=="six"?6:1;
+      totalScore+=run;
+    }
+    else if(btnid=="wkt")
+      wkts++;    
+    if(btnid!="wd" && btnid!="nob")
+      overBalls++;
+    if(btnid!="wkt")
+      {
+        if(btmSts==0)    
+        {
+          p1Score+=run;
+          if(btnid!="wd" && btnid!="nob")
+            p1Balls++;
+        }
+        else
+        {
+          p2Score+=run;
+          if(btnid!="wd" && btnid!="nob")
+            p2Balls++;
+        }
+        if(run%2 && btnid!="wd" && btnid!="nob")
+          btmSts=(btmSts+1)%2;
+      }
+      else
+      {
+        if(btmSts==0)     
+        {        
+          dsmPlyBalls=p1Balls;
+          p1Score=0;
+          p1Balls=0;
+        }
+        else
+        {  
+          dsmPlyBalls=p2Balls;
+          p2Score=0;        
+          p2Balls=0;
+        }
+        btmCnt++;
+      }
+    if(otBalls==0)
+      overC++;
+    otBalls++;
+    updateScore(run);
+  }
+  
+  function updateScore(run)
+  {
+    const runs=document.getElementById("runs");
+    const scoreLine=document.getElementById("score-line");
+    var scoreTxt,ballBGcolor,dsmPly,dsmPlyScr;
+    if(btnid=="wkt")
+    {
+      scoreTxt="W";
+      document.getElementById("wickets").innerText=wkts;
+      if(!btmSts)
+      {
+        dsmPly=document.getElementById("BTM-1-NM").innerText;
+        dsmPlyScr=document.getElementById("BTM-1-SC").innerText;
+        if(btmCnt<11)
+          document.getElementById("BTM-1-NM").innerText=batsmen[btmCnt];   
+        else
+          document.getElementById("BTM-1-NM").innerText="No Player"
+      }
+      else
+      {
+        dsmPly=document.getElementById("BTM-2-NM").innerText;
+        dsmPlyScr=document.getElementById("BTM-2-SC").innerText
+        if(btmCnt<11)
+          document.getElementById("BTM-2-NM").innerText=batsmen[btmCnt];    
+        else
+          document.getElementById("BTM-2-NM").innerText="No Player"
+      }
+      var li=document.createElement("li")
+      li.innerText=`${dsmPly} : ${dsmPlyScr} in ${dsmPlyBalls}`;
+      document.getElementById("DPlayers-list").appendChild(li);
+    }
+    else if(btnid=="dot")
+      scoreTxt=".";
+    else if(btnid=="wd")
+      scoreTxt="WD";
+    else if(btnid=="nob")
+      scoreTxt="NB";
+    else
+    {
+      scoreTxt=run;
+    }
+    runs.innerText=totalScore;
+    if(otBalls==1)
+    {
+      overDiv=document.createElement("div");
+      let overNum=document.createElement("div");
+      overNum.innerText="Over-"+(overC);
+      overNum.classList.add("over-num");
+      overDiv.appendChild(overNum);
+      scoreLine.appendChild(overDiv)
+      document.getElementById("overs").innerText=overC-1;
+    }
+    ballBGcolor=cssColors[parseInt(overC)%(cssColors.length)]
+    var span=document.createElement("span");
+    span.innerText=scoreTxt;
+    span.style.cssText="background-color:"+ballBGcolor;
+    overDiv.appendChild(span);    
+    document.getElementById("ov-balls").innerText=overBalls;
+    document.getElementById("BTM-1-SC").innerText=p1Score;
+    document.getElementById("BTM-2-SC").innerText=p2Score;
+    if(btmSts==0)       
+    {    
+      document.getElementById("BTM-1").classList.add("highlight");
+      document.getElementById("BTM-2").classList.remove("highlight");
+    }
+    else
+    {
+      document.getElementById("BTM-2").classList.add("highlight");
+      document.getElementById("BTM-1").classList.remove("highlight");
+    }
+    if(wkts==10 || (overC==totalOvers && overBalls==6))
+      setTimeout(()=>alert("Game Over!\nReview the score..."),0);
+    if(overBalls==6)
+    {
+      overBalls=0;
+      otBalls=0;
+    }
+  }
+  </script>
+</body>
+</html>
